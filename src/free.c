@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/06 18:53:14 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:24:34 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_mlx(t_mlx *mlx)
 	mlx_destroy_display(mlx->mlx_ptr);
 	if (mlx->mlx_ptr)//a voir si ce free est necessaire
 		free(mlx->mlx_ptr);
-	free(mlx);//a priori pas necessaire ?
+	free(mlx);
 }
 
 /**
@@ -38,11 +38,12 @@ void	free_map(t_map *map)
 	i = 0;
 	if (!map)
 		return ;
-	while (map->grid[i])//attention ca marche que si on met un null en dernier
+	while (map->grid[i])
 	{
 		free(map->grid[i]);
 		i++;
 	}
+	free(map->grid);
 	free(map);
 }
 /**
@@ -56,13 +57,13 @@ void	free_textures(t_textures *textures)
 	if (!textures)
 		return ;
 	if (textures->north)
-		free_texture(textures->north);
+		free(textures->north);
 	if (textures->south)
-		free_texture(textures->south);
+		free(textures->south);
 	if (textures->west)
-		free_texture(textures->west);
+		free(textures->west);
 	if (textures->east)
-		free_texture(textures->east);
+		free(textures->east);
 	free(textures);
 }
 

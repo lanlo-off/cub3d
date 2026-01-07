@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/06 17:55:22 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:42:21 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	dir_x;
-	int	dir_y;
-	int	plane_x;
-	int	plane_y;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	char	start_orient;
 }	t_player;
 
 typedef struct s_texture
@@ -85,6 +86,7 @@ typedef struct s_game
 	t_textures	*textures;
 	t_color		*floor_color;
 	t_color		*ceiling_color;
+	int			tile_size;
 }	t_game;
 
 #endif

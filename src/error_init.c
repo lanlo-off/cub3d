@@ -6,30 +6,47 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 16:35:13 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/06 17:24:16 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:44:08 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 /**
- * @brief Echec en initialisant la mlx
+ * @brief Echec en malloc game->img
  * Donc free ce qui a ete rempli par le parser
  * game->map
  * game->textures et chaque texture a l'interieur
- * game egalement
- * Puis exit avec 1
+ * game->img qui est initalise juste avant
+ * puis game egalement
  * 
  * @param game 
  */
-void	error_init_mlx(t_game *game)
+void	error_init_img(t_game *game)
 {
+	if (game->img)
+		free(game->img);
+	if (game->img->address)
+		free(game->img->address);
 	free_map(game->map);
 	free_textures(game->textures);
 	free(game->ceiling_color);//ou besoin d'une fonction ?
 	free(game->floor_color);//ou besoin d'une fonction ?
 	free(game);
 	exit(1);
+}
+
+/**
+ * @brief Echec en malloc mlx->ptr ou initialisant la mlx
+ * donc on free mlx->ptr si besoin
+ * Puis appel de error_init_img qui exit
+ * 
+ * @param game 
+ */
+void	error_init_mlx(t_game *game)
+{
+	if (game->mlx)
+		free(game->mlx);
+	error_init_img(game);
 }
 /**
  * @brief Echec en initialisant la fenetre
