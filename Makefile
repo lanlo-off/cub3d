@@ -4,7 +4,8 @@ SRCS = src/main.c\
 	src/init.c\
 	src/player.c\
 	src/print_img.c\
-	src/wip.c
+	src/wip.c\
+	src/ray.c
 	
 OBJS_DIR = obj
 
@@ -19,7 +20,7 @@ LIBFT = libft/libft.a
 
 MLX_FLAGS = -L/usr/lib/X11 -lXext -lX11
 
-MLX = minilibx-linux/libmlx.a
+MLX = mlx/libmlx.a
 
 CC = cc
 
@@ -40,7 +41,7 @@ $(LIBFT):
 	make -C libft
 
 $(MLX):
-	make -C minilibx-linux
+	make -C mlx
 
 clean:
 	@make clean -C libft

@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/07 18:55:46 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:44:11 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void print_minimap(t_game *game, t_mlx *mlx, t_img *img)
 	get_player_start(game->map->grid, game->player);
 	print_wall_img(game->map->grid, img->address, mlx->win_width);
 	draw_player_img(img->address, mlx->win_width, game->player);
-	print_ray_img(game->map, game->player, img->address);
+	print_ray_img(game, game->map, game->player);
 
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->img_ptr, 0, 0);
 

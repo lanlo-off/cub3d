@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:48:15 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/07 17:44:23 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/09 18:22:51 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static bool	init_struct_img(t_game* game, t_img *img)
 	img->address = ft_calloc(1, sizeof(char *));
 	if (!img->address)
 		error_init_img(game);
+	img->width = WIN_WIDTH;
+	img->height = WIN_HEIGHT;
 	//Peut-etre au'on aura d'autres choses a initaliser ?
 	return (true);
 }
