@@ -5,7 +5,8 @@ SRCS = src/main.c\
 	src/player.c\
 	src/print_img.c\
 	src/wip.c\
-	src/ray.c
+	src/ray.c\
+	src/ray_utils.c
 	
 OBJS_DIR = obj
 

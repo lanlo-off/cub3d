@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/09 17:45:38 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:58:04 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@
 # include <X11/keysym.h>
 # include "../libft/libft.h"
 
-# define WIN_WIDTH 1600
-# define WIN_HEIGHT 900
+# include <fcntl.h>
+# include <stdio.h>
+# include <string.h>
+
+# define WIN_WIDTH 2000
+# define WIN_HEIGHT 1125
 # define TILE_SIZE 64
 # define MARGIN 5
+# define FOV 60
+# define MM_WIDTH
+# define MM_HEIGTH
 
 /*error_init.c*/
 void	error_init_mlx(t_game *game);
@@ -47,52 +54,19 @@ bool	init_struct(t_game *game);
 bool	is_player(int i, int j, char c, t_player *player);
 
 /*ray.c*/
-bool	print_ray_img(t_game *game, t_map *map, t_player *player);
+bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
+void	get_ray_values(t_ray *ray, t_player *player);
+bool	calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
+
 
 /*wip.c*/
 void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
-void set_color(t_color *color, char *name);
+void	set_color(t_color *color, char *name);
 
 /*print_image.c*/
 void	print_img(t_game *game, void *img, int i, int j);
-void put_pixel(t_img *img, int x, int y, int color);
+void	put_pixel(t_img *img, int x, int y, int color);
 
 
-/*###########TEMPORAIRE##############*/
-
-
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
-
-typedef enum s_frontier
-{
-	VERTICAL,
-	HORIZONTAL,
-}	t_frontier;
-
-typedef struct s_ray
-{
-	double	dir_x;//= cos de l'angle ; se calcule avec la direction du joueur
-	double	dir_y;//= sin de l'angle ; player.dir + player.plane (a voir plus tard)
-	int	map_x;//coordonnees de la case actuellement traversee par le joueur
-	int	map_y;
-	double	side_dist_x;//distance du rayon jusqu'a la prochaine frontiere de case
-	double	side_dist_y;//i.e pour sortir de la case dans laquelle le joueur est
-	double	delta_dist_x;//distance a parcourir pour traverser 1 case entiere
-	double	delta_dist_y;//depend donc de la direction du rayon (pythagore)
-	int	step_x;//+1 avance vers la droite ou -1 vers la gauche (se deduit de dir_x) -> quand on traverse une frontiere verticale map_x += step_x 
-	int	step_y;//+1 avance vers le bas ou -1 vers le haut (se deduit de dir_y) -> quand on traverse une frontiere horizontale map_y += step_y
-	t_frontier	frontier_type;//indique si la frontiere rencontree a ce moment est 0=vertical ou 1=horizontal. ca sur la derniere frontiere (la rencontre du mur) + la direction donne N/S/E/W pour l'image a input sur le mur
-	t_texture	*wall_texture;//Se deduit de wall type + direction, ensuite on reutilise une des textures definie en fonction 
-	double	perp_dist;//distance perpendiculaire du joueur au mur (pour calculer la hauteur du mur a l'ecran) = pythagore en construisant un triangle rectangle ayant pour sommets : le joueur, le point du mur rencontre et en 3 l'intersection entre perpendiculaire du mur et perpendiculaire a cette perpendiculaire passant par le joueur
-	double	hit_x;//point d'impact sur le mur
-	double	hit_y;
-}	t_ray;
-
-/*On sait que pour chaque ray (chaque colonne de la fenetre):
-- Du joueur au point d'impact, on colore en floor
-- ensuite on met les pixels de la texture sur la hauteur du mur (calculable grace a perp dist)
-- De la fin du mur a la fin de la fenetre on fait le ceiling*/
 
 #endif

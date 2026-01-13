@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/09 17:44:11 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:55:34 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,14 +161,21 @@ bool	get_player_start(char **map, t_player *player)
 
 void print_minimap(t_game *game, t_mlx *mlx, t_img *img)
 {
+	int	nb_ray;
+
+	nb_ray = 0;
 	img->img_ptr = mlx_new_image(game->mlx->mlx_ptr, mlx->win_width, mlx->win_height);
 	printf("img_ptr = [%p]\n", img->img_ptr);
 	img->address = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
 	get_player_start(game->map->grid, game->player);
+	fill_player_data(game->player);
 	print_wall_img(game->map->grid, img->address, mlx->win_width);
 	draw_player_img(img->address, mlx->win_width, game->player);
-	print_ray_img(game, game->map, game->player);
-
+	while (nb_ray < FOV)//On veut faire 60 rayons max (1 par degres)
+	{
+		print_ray_img(game, game->map, game->player, nb_ray);
+		nb_ray++;
+	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->img_ptr, 0, 0);
 
 }

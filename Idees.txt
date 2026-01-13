@@ -2,8 +2,6 @@ Parser
 - Verifie validite de la map et des informations fournies
 - Remplit :
 	- game->map (en remplacant les cases vides par des 0 (cf ex en fin de doc))
-		- En fait fonctionne pas car les murs peuvent avoir plusieurs faces exposees (donc a faire dans le calcul du RC) -> Remplace les 1 des murs par des N/S/W/E pour identifier facilement quels textures mettre dessus
-		- Remplace le player par P et remplit player->start_orient avec la lettre trouvee (pas utile en fait ?)
 		- Si la map n'est pas convexe, remplace les vides par des a (permettra de traiter un rectangle dans la suite du sujet plutot que de traiter une forme concave tout en sachant que ce sont des espaces vides)
 	- game->textures et les textures dedans
 	- game->floor_color
