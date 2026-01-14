@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:52:36 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/13 15:57:48 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:46:15 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	draw_ray_floor(t_img *img, t_player *player, t_ray ray)
 	px_hit = ray.hit_x * TILE_SIZE;
 	py_hit = ray.hit_y * TILE_SIZE;
 	steps = fmax(abs(px_hit - px_player), abs(py_hit - py_player));
+	if (steps == 0)
+		return ;
 	i = 0;
 	while (i <= steps)
 	{
@@ -44,8 +46,11 @@ bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
 
 	ray.index = nb_ray;
 	get_ray_values(&ray, player);
+	printf("ray_values ok\n");
 	calculate_hitpoint(&ray, map, player);
+	printf("hitpoint_ok\n");
 	draw_ray_floor(game->img, player, ray);//before the wall
+	printf("dessin sol ok\n");
 	// draw_ray_wall(game->img, player, ray);//the wall (hauteur a calculer)
 	// draw_ray_ceiling(game->img, player, ray);//apres le wall
 	return (true);

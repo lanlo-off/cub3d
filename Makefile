@@ -6,7 +6,9 @@ SRCS = src/main.c\
 	src/print_img.c\
 	src/wip.c\
 	src/ray.c\
-	src/ray_utils.c
+	src/ray_utils.c\
+	src/hook.c\
+	src/hook_utils.c
 	
 OBJS_DIR = obj
 
@@ -15,7 +17,8 @@ OBJS = $(SRCS:src/%.c=$(OBJS_DIR)/%.o)
 NAME = cub3d
 
 HEADER = includes/cub3d.h\
-	includes/struct.h
+	includes/struct.h\
+	includes/keycode.h
 
 LIBFT = libft/libft.a
 
@@ -46,7 +49,7 @@ $(MLX):
 
 clean:
 	@make clean -C libft
-	@make clean -C minilibx-linux
+	@make clean -C mlx
 	rm -rf $(OBJS_DIR)
 
 fclean: clean

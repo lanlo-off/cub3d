@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:41:18 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/07 17:44:54 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:08:45 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int count_lines(const char *filename)
 }
 
 // Fonction utilitaire pour la longueur max d'une ligne
-static int max_line_len(const char *filename)
+static int count_line_len(const char *filename)
 {
 	FILE *f = fopen(filename, "r");
 	int max = 0;
@@ -59,7 +59,7 @@ void get_map(t_map *map, const char *filename)
 	if (!map || !filename)
 		return;
 	height = count_lines(filename);
-	width = max_line_len(filename);
+	width = count_line_len(filename);
 	if (height <= 0 || width <= 0)
 		return;
 	map->grid = malloc(sizeof(char *) * (height + 1));
@@ -133,11 +133,11 @@ int	main(int ac, char **av)
 	ft_memset(map, 0, sizeof(t_map));
 	get_map(map, av[1]);
 	game->map = map;
-	print_map(map->grid);
+	// print_map(map->grid);
 	init_struct(game);
 	print_minimap(game, game->mlx, game->img);
 	mlx_loop(game->mlx->mlx_ptr);
-
+	exit_game(game);
 	// print_minimap(game, game->mlx, game->img);
 	// free_all_exit(game);
 	return (0);

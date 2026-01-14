@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/13 16:23:07 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:34:19 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	get_ray_values(t_ray *ray, t_player *player)
 	double	camera_x;
 
 	/*positionnement du rayon dans le plan de la camera*/
-	camera_x = 2.0 * ray->index / (FOV - 1) - 1.0;
+	camera_x = 2.0 * ray->index / (MM_NB_RAY - 1) - 1.0;
 	/*1- Orientation du rayon = player car pour l'instant on prend uniquement le rayon central*/
 	ray->dir_x = player->dir_x + player->plane_x * camera_x;
-	ray->dir_y = player->dir_y = player->plane_y * camera_x;
+	ray->dir_y = player->dir_y + player->plane_y * camera_x;
 	
 	/*2- Deduction du sens*/
 	ray->step_x = ((ray->dir_x >= 0) - (ray->dir_x < 0));
@@ -36,11 +36,11 @@ void	get_ray_values(t_ray *ray, t_player *player)
 	ray->map_y = (int)player->y;
 	
 	/*4- calcul de la distance pour parcourir une case entiere*/
-	if (ray->dir_x == 0)
-		ray->delta_dist_x = 1e30;//pour eviter une division par 0
+	if (fabs(ray->dir_x) < EPSILON)
+		ray->delta_dist_x = 1e30;//pour eviter une division par un nombre trop petit ou par 0
 	else
 		ray->delta_dist_x = fabs(1.0/ray->dir_x);//car dirx = cos de l'angle
-	if (ray->dir_y == 0)
+	if (fabs(ray->dir_y) < EPSILON)
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1.0/ray->dir_y);//car diry = sin de l'angle
@@ -58,7 +58,9 @@ void	get_ray_values(t_ray *ray, t_player *player)
 static void	advance_to_wall(t_ray *ray, t_map *map)
 {
 	//6- On fait avancer le ray jusqu'au mur, en progressant frontiere par frontiere
-	while (map->grid[ray->map_x][ray->map_y] != '1')//garanti que ca arrive
+	while (ray->map_x >= 0 && ray->map_x <= map->width
+		&& ray->map_y >= 0 && ray->map_y <= map->height
+		&& map->grid[ray->map_y][ray->map_x] != '1')//garanti que ca arrive
 	{
 		if (ray->side_dist_x < ray->side_dist_y)//on tapera une frontiere verticale en premier (on change de case horizontalement)
 		{

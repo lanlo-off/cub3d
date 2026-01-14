@@ -6,12 +6,14 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/13 16:03:34 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 17:15:47 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# include <stdbool.h>
 
 typedef struct s_mlx
 {
@@ -43,6 +45,15 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
+/**
+ * @brief 
+ * 
+ * position dans la map (monde reel donc pas dans la fenetre) : x et y
+ * orientation du regard : dir_x et dir_y
+ * vecteur perpendiculaire a l'orientation du regard et dont le centre se situe sur l'axe de direction
+ * Ses extremites definissent les limites du champ de vision du joueur
+ * En consequence, sa longueur est definie par la constante FOV (FOV = 60deg -> 0.66 de longueur)
+ */
 typedef struct s_player
 {
 	double	x;
@@ -107,6 +118,16 @@ typedef struct s_ray
 - ensuite on met les pixels de la texture sur la hauteur du mur (calculable grace a perp dist)
 - De la fin du mur a la fin de la fenetre on fait le ceiling*/
 
+typedef struct s_key
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	left;
+	bool	right;
+}	t_key;
+
 typedef struct s_game
 {
 	t_mlx		*mlx;//pour toute la mlx
@@ -116,6 +137,7 @@ typedef struct s_game
 	t_textures	*textures;
 	t_color		*floor_color;
 	t_color		*ceiling_color;
+	t_key		*key;
 	int			tile_size;
 }	t_game;
 

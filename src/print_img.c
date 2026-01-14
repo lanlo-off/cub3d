@@ -6,11 +6,34 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:24:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/09 18:22:43 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:48:18 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	reset_background(t_img *img)
+{
+	ft_memset(img->address, 0, img->line_len * img->height);
+}
+
+void	fill_background(t_img *img, int color)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (y < img->height)
+	{
+		while (x < img->width)
+		{
+			put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	print_img(t_game *game, void *img, int i, int j)
 {

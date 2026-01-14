@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/13 15:58:04 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:20:36 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include "struct.h"
+# include "keycode.h"
 # include <math.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include "../mlx/mlx.h"
 # include <X11/X.h>
@@ -33,6 +33,10 @@
 # define FOV 60
 # define MM_WIDTH
 # define MM_HEIGTH
+# define MM_NB_RAY 120
+# define ROT_SPEED 0.02//radians (~3 degrés)
+# define MOV_SPEED 0.02//a voir
+# define EPSILON 1e-6//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
 
 /*error_init.c*/
 void	error_init_mlx(t_game *game);
@@ -46,6 +50,14 @@ void	free_mlx(t_mlx *mlx);
 void	free_img(t_img *img);
 int		exit_game(t_game *game);
 
+/*hook.c*/
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		game_loop(t_game *game);
+
+/*hook_utils.c*/
+void	rotate(t_player *player, double rot);
+bool	is_in_map(double x, int value);
 
 /*init.c*/
 bool	init_struct(t_game *game);
@@ -58,7 +70,6 @@ bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
 void	get_ray_values(t_ray *ray, t_player *player);
 bool	calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
 
-
 /*wip.c*/
 void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
 void	set_color(t_color *color, char *name);
@@ -66,6 +77,7 @@ void	set_color(t_color *color, char *name);
 /*print_image.c*/
 void	print_img(t_game *game, void *img, int i, int j);
 void	put_pixel(t_img *img, int x, int y, int color);
+void	reset_background(t_img *img);
 
 
 
