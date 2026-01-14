@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:42:21 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:24:28 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ void print_minimap(t_game *game, t_mlx *mlx, t_img *img)
 	int	nb_ray;
 
 	nb_ray = 0;
-	img->img_ptr = mlx_new_image(game->mlx->mlx_ptr, mlx->win_width, mlx->win_height);
-	img->address = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
+	// img->img_ptr = mlx_new_image(game->mlx->mlx_ptr, mlx->win_width, mlx->win_height);
+	// img->address = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
 	reset_background(img);
 	print_wall_img(game->map->grid, img->address, mlx->win_width);
 	draw_player_img(img->address, mlx->win_width, game->player);
@@ -155,4 +155,5 @@ void print_minimap(t_game *game, t_mlx *mlx, t_img *img)
 		nb_ray++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->img_ptr, 0, 0);
+	// mlx_destroy_image(mlx->mlx_ptr, img->img_ptr);
 }
