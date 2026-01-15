@@ -6,53 +6,32 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:34:19 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:58:18 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	get_ray_values(t_ray *ray, t_player *player)
+/**
+ * @brief Transforme un rgb en int en partant du principe que 
+ * une couleur devient un int qui s'ecrit (0x00RRGGBB)
+ * 
+ * Un int fait 32 bits :
+[00000000][RRRRRRRR][GGGGGGGG][BBBBBBBB]
+    8 bits     8         8         8
+r << 16 place le rouge dans l’octet 2
+g << 8 place le vert dans l’octet 1
+b reste dans l’octet 0
+
+ * @param color 
+ * @return int 
+ */
+int	rgb_to_int(t_color *color)
 {
-	double	camera_x;
+	int	res;
 
-	/*positionnement du rayon dans le plan de la camera*/
-	camera_x = 2.0 * ray->index / (MM_NB_RAY - 1) - 1.0;
-	/*1- Orientation du rayon = player car pour l'instant on prend uniquement le rayon central*/
-	ray->dir_x = player->dir_x + player->plane_x * camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * camera_x;
-	
-	/*2- Deduction du sens*/
-	ray->step_x = ((ray->dir_x >= 0) - (ray->dir_x < 0));
-	ray->step_y = ((ray->dir_y >= 0) - (ray->dir_y < 0));
-	/*Soit en plus explicite 
-	if (ray->dir_x < 0)
-		ray->step_x = -1;
-	else if (ray->dir_x >= 0)
-		ray->step_x = 1; on ne l'utilisera pas si dirx == 0 donc ok*/
-	
-	/*3- position d'origine du rayon = celle du joueur (changera en cour de dessin peut etre)*/
-	ray->map_x = (int)player->x;
-	ray->map_y = (int)player->y;
-	
-	/*4- calcul de la distance pour parcourir une case entiere*/
-	if (fabs(ray->dir_x) < EPSILON)
-		ray->delta_dist_x = 1e30;//pour eviter une division par un nombre trop petit ou par 0
-	else
-		ray->delta_dist_x = fabs(1.0/ray->dir_x);//car dirx = cos de l'angle
-	if (fabs(ray->dir_y) < EPSILON)
-		ray->delta_dist_y = 1e30;
-	else
-		ray->delta_dist_y = fabs(1.0/ray->dir_y);//car diry = sin de l'angle
-
-	//5- deduction de la distance pour la case en cours de traversee : on peut ecrire sans if avec
-	ray->side_dist_x = ray->delta_dist_x * fabs((player->x - ray->map_x - (ray->step_x == 1)));
-	ray->side_dist_y = ray->delta_dist_y * fabs((player->y - ray->map_y - (ray->step_y == 1)));
-	/*en plus explicite ca donne
-	if (ray->step_x == 1)
-		ray->side_dist_x = ray->delta_dist_x * ((ray->map_x + 1) - player->x);
-	else
-		ray->side_dist_x = ray->delta_dist_x * (player->x - ray->map_x);*/
+	res = (color->r << 16) | (color->g << 8) | color->b;
+	return (res);
 }
 
 static void	advance_to_wall(t_ray *ray, t_map *map)
@@ -77,32 +56,74 @@ static void	advance_to_wall(t_ray *ray, t_map *map)
 	}
 }
 
-bool	calculate_hitpoint(t_ray *ray, t_map *map, t_player *player)
+bool	calculate_hitpoint(t_game *g, t_ray *ray, t_map *map, t_player *player)
 {
 	advance_to_wall(ray, map);
 	//7- On peut deduire la wall_texture et la perp distance
-	//ray->wall_texture = ft_calloc(1, sizeof(t_texture));
-	//if (!ray->wall_texture)
-	//	return (false);
 	if (ray->frontier_type == VERTICAL)//on est donc sur EST ou OUEST
 	{
-	//	if (ray->step_x == 1)
-	//		ray->wall_texture = game->textures->west;
-	//	else
-	//		ray->wall_texture = game->textures->east;
+		if (ray->step_x == 1)
+			ray->wall_texture = g->tex_WE;
+		else
+			ray->wall_texture = g->tex_EA;
 		ray->perp_dist = ray->side_dist_x - ray->delta_dist_x;//Calcule de la perp_dist (mais ce n'est pas une correction du fish eye)
 	}
 	else
 	{
-	//	if (ray->step_y == 1)
-	//		ray->wall_texture = game->textures->north;
-	//	else
-	//		ray->wall_texture = game->textures->south;
+		if (ray->step_y == 1)
+			ray->wall_texture = g->tex_NO;
+		else
+			ray->wall_texture = g->tex_SO;
 		ray->perp_dist = ray->side_dist_y - ray->delta_dist_y;
 	}
 	
 	//8- Calcule de l'emplacement exact du hitpoint
 	ray->hit_x = player->x + ray->dir_x * ray->perp_dist;
 	ray->hit_y = player->y + ray->dir_y * ray->perp_dist;
+
+	//9- Calcul du positionnement du mur sur ce rayon (debut, hauteur, fin)
+	if (ray->perp_dist < EPSILON)
+		ray->perp_dist = EPSILON;//pour eviter la division par 0 ensuite si jamais on a un pb de parsing/de traversage de mur
+	ray->wall_height = (int)(WIN_HEIGHT / ray->perp_dist);
+	ray->wall_start = -ray->wall_height / 2 + WIN_HEIGHT / 2;//car le mur est centre en hauteur
+	ray->wall_end = ray->wall_height / 2 + WIN_HEIGHT / 2;
+	if (ray->wall_start < 0)
+		ray->wall_start = 0;
+	if (ray->wall_end >= WIN_HEIGHT) 
+		ray->wall_end = WIN_HEIGHT - 1;
 	return (true);
+}
+
+
+void	get_ray_values(t_ray *ray, t_player *player)
+{
+	double	camera_x;
+
+	/*positionnement du rayon dans le plan de la camera*/
+	camera_x = 2.0 * ray->index / (WIN_WIDTH - 1) - 1.0;
+	/*1- Orientation du rayon = player car pour l'instant on prend uniquement le rayon central*/
+	ray->dir_x = player->dir_x + player->plane_x * camera_x;
+	ray->dir_y = player->dir_y + player->plane_y * camera_x;
+	
+	/*2- Deduction du sens*/
+	ray->step_x = ((ray->dir_x >= 0) - (ray->dir_x < 0));
+	ray->step_y = ((ray->dir_y >= 0) - (ray->dir_y < 0));
+	
+	/*3- position d'origine du rayon = celle du joueur (changera en cour de dessin peut etre)*/
+	ray->map_x = (int)player->x;
+	ray->map_y = (int)player->y;
+	
+	/*4- calcul de la distance pour parcourir une case entiere*/
+	if (fabs(ray->dir_x) < EPSILON)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1.0/ray->dir_x);
+	if (fabs(ray->dir_y) < EPSILON)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1.0/ray->dir_y);
+
+	//5- deduction de la distance pour la case en cours de traversee : on peut ecrire sans if avec
+	ray->side_dist_x = ray->delta_dist_x * fabs((player->x - ray->map_x - (ray->step_x == 1)));
+	ray->side_dist_y = ray->delta_dist_y * fabs((player->y - ray->map_y - (ray->step_y == 1)));
 }

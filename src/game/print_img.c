@@ -6,12 +6,17 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:24:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:21:59 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:08:11 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+/**
+ * @brief Remplit l'image de pixels noirs
+ * 
+ * @param img 
+ */
 void	reset_background(t_img *img)
 {
 	ft_memset(img->address, 0, img->line_len * img->height);

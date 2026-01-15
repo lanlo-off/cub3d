@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:52:36 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:26:25 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:18:36 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void	draw_ray_floor(t_img *img, t_player *player, t_ray ray)
 	}
 }
 
-bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
-{
-	t_ray	ray;
+// bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
+// {
+// 	t_ray	ray;
 
-	ray.index = nb_ray;
-	get_ray_values(&ray, player);
-	calculate_hitpoint(&ray, map, player);
-	draw_ray_floor(game->img, player, ray);//before the wall
-	// draw_ray_wall(game->img, player, ray);//the wall (hauteur a calculer)
-	// draw_ray_ceiling(game->img, player, ray);//apres le wall
-	return (true);
-}
+// 	ray.index = nb_ray;
+// 	get_ray_values(&ray, player);
+// 	calculate_hitpoint(&ray, map, player);
+// 	draw_ray_floor(game->img, player, ray);//before the wall
+// 	// draw_ray_wall(game->img, player, ray);//the wall (hauteur a calculer)
+// 	// draw_ray_ceiling(game->img, player, ray);//apres le wall
+// 	return (true);
+// }

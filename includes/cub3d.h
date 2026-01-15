@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:21:09 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:49:41 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,30 @@
 # define MOV_SPEED 0.02//a voir
 # define EPSILON 1e-6//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
 
-/*error_init.c*/
-void	error_init_mlx(t_game *game);
-void	error_init_win(t_game *game, t_mlx *mlx);
-void	error_init_img(t_game *game);
-
+/*#############   FREE & UTILS   ###########*/
 /*free.c*/
 void	free_map(t_map *map);
 void	free_texture(t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 void	free_img(t_img *img);
 int		exit_game(t_game *game);
+
+/*#############   INIT   ###########*/
+
+/*init.c*/
+bool	init_struct(t_game *g);
+bool	init_game(t_game *game);
+
+/*init_utils.c*/
+bool	init_textures(t_game *g);
+bool	get_player_start(char **map, t_player *player);
+
+/*error_init.c*/
+void	error_init_mlx(t_game *game);
+void	error_init_win(t_game *game, t_mlx *mlx);
+void	error_init_img(t_game *game);
+
+/*#############   GAME   ###########*/
 
 /*hook.c*/
 int		key_press(int keycode, t_game *game);
@@ -61,29 +74,25 @@ int		game_loop(t_game *game);
 void	rotate(t_player *player, double rot);
 bool	is_in_map(double x, int value);
 
-/*init.c*/
-bool	init_struct(t_game *g);
-bool	init_game(t_game *game);
-
-/*init_utils.c*/
-bool	init_textures(t_game *g);
-bool	get_player_start(char **map, t_player *player);
-
-
-/*ray.c*/
-bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
-void	get_ray_values(t_ray *ray, t_player *player);
-bool	calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
-
-/*wip.c*/
-void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
-void	set_color(t_color *color, char *name);
-
 /*print_image.c*/
 void	print_img(t_game *game, void *img, int i, int j);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	reset_background(t_img *img);
 
+/*ray.c & ray_utils.c*/
+int		rgb_to_int(t_color *color);
+bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
+void	get_ray_values(t_ray *ray, t_player *player);
+bool	calculate_hitpoint(t_game *g, t_ray *ray, t_map *map, t_player *player);
+
+/*render.c*/
+void	render(t_game *game, t_mlx *mlx, t_img *img);
+
+/*#############   MINIMAP   ###########*/
+void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
+bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
+void	mm_get_ray_values(t_ray *ray, t_player *player);
+bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
 
 /*#############   TEMPORAIRE   ###########*/
 /*tmp_utils.c*/
@@ -92,6 +101,7 @@ void	get_map(t_map *map, const char *filename);
 int		count_line_len(const char *filename);
 int		count_lines(const char *filename);
 bool	load_textures(t_game *g);
+void	set_color(t_color *color, char *name);
 
 
 #endif

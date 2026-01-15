@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   mm_ray.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:52:36 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:46:15 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:57:41 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_ray_floor(t_img *img, t_player *player, t_ray ray)
+static void	mm_draw_ray_floor(t_img *img, t_player *player, t_ray ray)
 {
 	int	px_player;
 	int	py_player;
@@ -40,18 +40,13 @@ void	draw_ray_floor(t_img *img, t_player *player, t_ray ray)
 	}
 }
 
-bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
+bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
 {
 	t_ray	ray;
 
 	ray.index = nb_ray;
-	get_ray_values(&ray, player);
-	printf("ray_values ok\n");
-	calculate_hitpoint(&ray, map, player);
-	printf("hitpoint_ok\n");
-	draw_ray_floor(game->img, player, ray);//before the wall
-	printf("dessin sol ok\n");
-	// draw_ray_wall(game->img, player, ray);//the wall (hauteur a calculer)
-	// draw_ray_ceiling(game->img, player, ray);//apres le wall
+	mm_get_ray_values(&ray, player);
+	mm_calculate_hitpoint(&ray, map, player);
+	mm_draw_ray_floor(game->img, player, ray);//before the wall
 	return (true);
 }

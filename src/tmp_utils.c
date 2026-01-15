@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 16:50:51 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:07:36 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,40 @@ bool	load_textures(t_game *g)
 	load_tex(g->mlx, g->tex_WE, "textures/wall_WE.xpm");
 	load_tex(g->mlx, g->tex_EA, "textures/wall_EA.xpm");
 	return (true);
+}
+
+void set_color(t_color *color, char *name)
+{
+	if (!color || !name)
+		return;
+	if (ft_strcmp(name, "blue") == 0)
+	{
+		color->r = 0;
+		color->g = 0;
+		color->b = 255;
+	}
+	else if (ft_strcmp(name, "white") == 0)
+	{
+		color->r = 255;
+		color->g = 255;
+		color->b = 255;
+	}
+	else if (ft_strcmp(name, "green") == 0)
+	{
+		color->r = 0;
+		color->g = 255;
+		color->b = 0;
+	}
+	else if (ft_strcmp(name, "black") == 0)
+	{
+		color->r = 0;
+		color->g = 0;
+		color->b = 0;
+	}
+	else if (ft_strcmp(name, "red") == 0)
+	{
+		color->r = 255;
+		color->g = 0;
+		color->b = 0;
+	}
 }

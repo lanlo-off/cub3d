@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   mm_ray_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:34:19 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:55:57 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	get_ray_values(t_ray *ray, t_player *player)
+void	mm_get_ray_values(t_ray *ray, t_player *player)
 {
 	double	camera_x;
 
@@ -77,7 +77,7 @@ static void	advance_to_wall(t_ray *ray, t_map *map)
 	}
 }
 
-bool	calculate_hitpoint(t_ray *ray, t_map *map, t_player *player)
+bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player)
 {
 	advance_to_wall(ray, map);
 	//7- On peut deduire la wall_texture et la perp distance

@@ -1,55 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wip.c                                              :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 19:24:28 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:04:34 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void set_color(t_color *color, char *name)
-{
-	if (!color || !name)
-		return;
-	if (ft_strcmp(name, "blue") == 0)
-	{
-		color->r = 0;
-		color->g = 0;
-		color->b = 255;
-	}
-	else if (ft_strcmp(name, "white") == 0)
-	{
-		color->r = 255;
-		color->g = 255;
-		color->b = 255;
-	}
-	else if (ft_strcmp(name, "green") == 0)
-	{
-		color->r = 0;
-		color->g = 255;
-		color->b = 0;
-	}
-	else if (ft_strcmp(name, "black") == 0)
-	{
-		color->r = 0;
-		color->g = 0;
-		color->b = 0;
-	}
-	else if (ft_strcmp(name, "red") == 0)
-	{
-		color->r = 255;
-		color->g = 0;
-		color->b = 0;
-	}
-}
-
 // Dessine un bloc bleu de TILE_SIZE x TILE_SIZE avec une marge de 5px entre chaque tile
-void draw_block_img(char *img_data, int img_width, int x, int y)
+static void draw_block_img(char *img_data, int img_width, int x, int y)
 {
 	int i;
 	int j;
@@ -79,7 +43,7 @@ void draw_block_img(char *img_data, int img_width, int x, int y)
 }
 
 // Dessine un cercle blanc de rayon 5 centré sur la position pixel du joueur
-void draw_player_img(char *img_data, int img_width, t_player *player)
+static void draw_player_img(char *img_data, int img_width, t_player *player)
 {
 	int x;
 	int y;
@@ -119,7 +83,7 @@ void draw_player_img(char *img_data, int img_width, t_player *player)
 }
 
 // Dessine les murs dans l'image avec une marge entre chaque tile
-void print_wall_img(char **grid, char *img_data, int img_width)
+static void print_wall_img(char **grid, char *img_data, int img_width)
 {
 	int i;
 	int j;
@@ -145,13 +109,13 @@ void print_minimap(t_game *game, t_mlx *mlx, t_img *img)
 	nb_ray = 0;
 	// img->img_ptr = mlx_new_image(game->mlx->mlx_ptr, mlx->win_width, mlx->win_height);
 	// img->address = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
-	reset_background(img);
+	// reset_background(img);
 	print_wall_img(game->map->grid, img->address, mlx->win_width);
 	draw_player_img(img->address, mlx->win_width, game->player);
 	while (nb_ray < MM_NB_RAY)//On veut faire 60 rayons max (1 par degres)
 	{
 		printf("nb_ray : [%i]\n", nb_ray);
-		print_ray_img(game, game->map, game->player, nb_ray);
+		mm_print_ray_img(game, game->map, game->player, nb_ray);
 		nb_ray++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->img_ptr, 0, 0);
