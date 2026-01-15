@@ -6,12 +6,14 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:20:36 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:21:09 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/*#############   PERMANENT   ###########*/
 
 # include "struct.h"
 # include "keycode.h"
@@ -45,7 +47,7 @@ void	error_init_img(t_game *game);
 
 /*free.c*/
 void	free_map(t_map *map);
-void	free_textures(t_textures *textures);
+void	free_texture(t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 void	free_img(t_img *img);
 int		exit_game(t_game *game);
@@ -60,10 +62,13 @@ void	rotate(t_player *player, double rot);
 bool	is_in_map(double x, int value);
 
 /*init.c*/
-bool	init_struct(t_game *game);
+bool	init_struct(t_game *g);
+bool	init_game(t_game *game);
 
-/*player.c*/
-bool	is_player(int i, int j, char c, t_player *player);
+/*init_utils.c*/
+bool	init_textures(t_game *g);
+bool	get_player_start(char **map, t_player *player);
+
 
 /*ray.c*/
 bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
@@ -79,6 +84,14 @@ void	print_img(t_game *game, void *img, int i, int j);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	reset_background(t_img *img);
 
+
+/*#############   TEMPORAIRE   ###########*/
+/*tmp_utils.c*/
+void	print_map(char **grid);
+void	get_map(t_map *map, const char *filename);
+int		count_line_len(const char *filename);
+int		count_lines(const char *filename);
+bool	load_textures(t_game *g);
 
 
 #endif

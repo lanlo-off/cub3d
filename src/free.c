@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 13:40:49 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:06:40 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,17 @@ void	free_map(t_map *map)
 	free(map->grid);
 	free(map);
 }
+
 /**
  * @brief Free chacune des textures
  * En cas d'echec d'init ou de fin normale du jeu
  * 
  * @param textures 
  */
-void	free_textures(t_textures *textures)
+void	free_texture(t_tex *texture)
 {
-	if (!textures)
+	if (!texture)
 		return ;
-	if (textures->north)
-		free(textures->north);
-	if (textures->south)
-		free(textures->south);
-	if (textures->west)
-		free(textures->west);
-	if (textures->east)
-		free(textures->east);
-	free(textures);
 }
 
 /**
@@ -91,8 +83,14 @@ int	exit_game(t_game *game)
 		free_mlx(game->mlx);
 	if (game->player)
 		free(game->player);
-	if (game->textures)
-		free_textures(game->textures);
+	if (game->tex_NO)
+		free_texture(game->tex_NO);
+	if (game->tex_SO)
+		free_texture(game->tex_SO);
+	if (game->tex_WE)
+		free_texture(game->tex_WE);
+	if (game->tex_EA)
+		free_texture(game->tex_EA);
 	free(game);
 	return (0);
 }

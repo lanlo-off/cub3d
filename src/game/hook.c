@@ -6,12 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:42:58 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:11:44 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:03:08 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 static void	try_moving(t_player *p, t_map *m, double dx, double dy)
 {
@@ -58,7 +57,8 @@ int	game_loop(t_game *game)
 	if (game->key->right)
 		(rotate(game->player, ROT_SPEED), printf("Rot droite\n"));
 	move_player(game, game->key, game->player);
-	print_minimap(game, game->mlx, game->img);
+	// print_minimap(game, game->mlx, game->img);
+	print_map(game, game->mlx, game->img);
 	return (0);
 }
 

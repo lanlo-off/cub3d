@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:24:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 14:48:18 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:21:59 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	reset_background(t_img *img)
 	ft_memset(img->address, 0, img->line_len * img->height);
 }
 
+/**
+ * @brief Pas utilisee pour le moment
+ * 
+ * @param img 
+ * @param color 
+ */
 void	fill_background(t_img *img, int color)
 {
 	int	y;

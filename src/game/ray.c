@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 17:52:36 by llechert          #+#    #+#             */
+/*   Updated: 2026/01/15 18:26:25 by llechert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3d.h"
+
+void	draw_ray_floor(t_img *img, t_player *player, t_ray ray)
+{
+	int	px_player;
+	int	py_player;
+	int	px_hit;
+	int	py_hit;
+	int	x;
+	int y;
+	int	steps;
+	int	i;
+
+	px_player = player->x * TILE_SIZE;
+	py_player = player->y * TILE_SIZE;
+	px_hit = ray.hit_x * TILE_SIZE;
+	py_hit = ray.hit_y * TILE_SIZE;
+	steps = fmax(abs(px_hit - px_player), abs(py_hit - py_player));
+	if (steps == 0)
+		return ;
+	i = 0;
+	while (i <= steps)
+	{
+		x = px_player + (px_hit - px_player) * i / steps;
+		y = py_player + (py_hit - py_player) * i / steps;
+		put_pixel(img, x, y, 0xFFFFFF);
+		i++;
+	}
+}
+
+bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray)
+{
+	t_ray	ray;
+
+	ray.index = nb_ray;
+	get_ray_values(&ray, player);
+	calculate_hitpoint(&ray, map, player);
+	draw_ray_floor(game->img, player, ray);//before the wall
+	// draw_ray_wall(game->img, player, ray);//the wall (hauteur a calculer)
+	// draw_ray_ceiling(game->img, player, ray);//apres le wall
+	return (true);
+}

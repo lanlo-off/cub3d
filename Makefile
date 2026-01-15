@@ -1,14 +1,22 @@
 SRCS = src/main.c\
-	src/error_init.c\
-	src/free.c\
-	src/init.c\
-	src/player.c\
-	src/print_img.c\
-	src/wip.c\
-	src/ray.c\
-	src/ray_utils.c\
-	src/hook.c\
-	src/hook_utils.c
+	src/free.c
+
+SRCS += src/init/init.c\
+	src/init/error_init.c\
+	src/init_utils.c\
+
+SRCS +=	src/game/print_img.c\
+	src/game/render.c\
+	src/game/ray.c\
+	src/game/ray_utils.c\
+	src/game/hook.c\
+	src/game/hook_utils.c
+
+SRCS += src/minimap/minimap.c\
+	src/minimap/mm_ray.c\
+	src/minimap/mm_ray_utils.c
+
+SRCS += src/tmp_utils.c
 	
 OBJS_DIR = obj
 

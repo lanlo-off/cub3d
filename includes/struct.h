@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 13:56:01 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:19:54 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
-typedef struct s_texture
+typedef struct s_tex
 {
 	void	*img;
 	char	*addr;
@@ -73,15 +73,7 @@ typedef struct s_texture
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_texture;
-
-typedef struct s_textures
-{
-	t_texture	*north;
-	t_texture	*south;
-	t_texture	*west;
-	t_texture	*east;
-}	t_textures;
+}	t_tex;
 
 typedef struct s_color
 {
@@ -98,22 +90,22 @@ typedef enum s_frontier
 
 typedef struct s_ray
 {
-	int		index;
-	double	dir_x;//= cos de l'angle ; se calcule avec la direction du joueur
-	double	dir_y;//= sin de l'angle ; player.dir + player.plane (a voir plus tard)
-	int	map_x;//coordonnees de la case actuellement traversee par le joueur
-	int	map_y;
-	double	side_dist_x;//distance du rayon jusqu'a la prochaine frontiere de case
-	double	side_dist_y;//i.e pour sortir de la case dans laquelle le joueur est
-	double	delta_dist_x;//distance a parcourir pour traverser 1 case entiere
-	double	delta_dist_y;//depend donc de la direction du rayon (pythagore)
-	int	step_x;//+1 avance vers la droite ou -1 vers la gauche (se deduit de dir_x) -> quand on traverse une frontiere verticale map_x += step_x 
-	int	step_y;//+1 avance vers le bas ou -1 vers le haut (se deduit de dir_y) -> quand on traverse une frontiere horizontale map_y += step_y
+	int			index;
+	double		dir_x;//= cos de l'angle ; se calcule avec la direction du joueur
+	double		dir_y;//= sin de l'angle ; player.dir + player.plane (a voir plus tard)
+	int			map_x;//coordonnees de la case actuellement traversee par le joueur
+	int			map_y;
+	double		side_dist_x;//distance du rayon jusqu'a la prochaine frontiere de case
+	double		side_dist_y;//i.e pour sortir de la case dans laquelle le joueur est
+	double		delta_dist_x;//distance a parcourir pour traverser 1 case entiere
+	double		delta_dist_y;//depend donc de la direction du rayon (pythagore)
+	int			step_x;//+1 avance vers la droite ou -1 vers la gauche (se deduit de dir_x) -> quand on traverse une frontiere verticale map_x += step_x 
+	int			step_y;//+1 avance vers le bas ou -1 vers le haut (se deduit de dir_y) -> quand on traverse une frontiere horizontale map_y += step_y
 	t_frontier	frontier_type;//indique si la frontiere rencontree a ce moment est 0=vertical ou 1=horizontal. ca sur la derniere frontiere (la rencontre du mur) + la direction donne N/S/E/W pour l'image a input sur le mur
-	t_texture	*wall_texture;//Se deduit de wall type + direction, ensuite on reutilise une des textures definie en fonction 
-	double	perp_dist;//distance perpendiculaire du joueur au mur (pour calculer la hauteur du mur a l'ecran) = pythagore en construisant un triangle rectangle ayant pour sommets : le joueur, le point du mur rencontre et en 3 l'intersection entre perpendiculaire du mur et perpendiculaire a cette perpendiculaire passant par le joueur
-	double	hit_x;//point d'impact sur le mur
-	double	hit_y;
+	t_tex		*wall_texture;//Se deduit de wall type + direction, ensuite on reutilise une des textures definie en fonction 
+	double		perp_dist;//distance perpendiculaire du joueur au mur (pour calculer la hauteur du mur a l'ecran) = pythagore en construisant un triangle rectangle ayant pour sommets : le joueur, le point du mur rencontre et en 3 l'intersection entre perpendiculaire du mur et perpendiculaire a cette perpendiculaire passant par le joueur
+	double		hit_x;//point d'impact sur le mur
+	double		hit_y;
 }	t_ray;
 
 /*On sait que pour chaque ray (chaque colonne de la fenetre):
@@ -137,11 +129,26 @@ typedef struct s_game
 	t_img		*img;//pour le buffer de rendu : on cree l'image ici avant de l'afficher en une fois sur la fenetre
 	t_map		*map;//pour la map post-parsing
 	t_player	*player;//pour pos et orientation
-	t_textures	*textures;
+	t_tex		*tex_NO;
+	t_tex		*tex_SO;
+	t_tex		*tex_WE;
+	t_tex		*tex_EA;
 	t_color		*floor_color;
 	t_color		*ceiling_color;
 	t_key		*key;
 	int			tile_size;
 }	t_game;
+
+typedef struct s_parser
+{
+	char	*map_name;
+	t_map	*map;
+	t_tex	*NO;
+	t_tex	*SO;
+	t_tex	*WE;
+	t_tex	*EA;
+	t_color	*ceiling_color;
+	t_color	*floor_color;
+}	t_parser;
 
 #endif
