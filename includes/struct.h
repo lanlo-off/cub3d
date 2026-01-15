@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 17:15:47 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:56:01 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ typedef struct s_player
 typedef struct s_texture
 {
 	void	*img;
+	char	*addr;
 	int		width;
 	int		height;
-	void	*pixels;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_texture;
 
 typedef struct s_textures
