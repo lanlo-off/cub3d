@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:57:33 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:13:31 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@
 # include <stdio.h>
 # include <string.h>
 
-# define WIN_WIDTH 2000
-# define WIN_HEIGHT 1125
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 450
 # define TILE_SIZE 64
 # define MARGIN 5
 # define FOV 60
 # define MM_WIDTH
 # define MM_HEIGTH
 # define MM_NB_RAY 120
-# define ROT_SPEED 0.02//radians (~3 degrés)
-# define MOV_SPEED 0.02//a voir
-# define EPSILON 1e-30//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
+# define ROT_SPEED 0.01//en faisant WIN_WINDTH / 100000 on a un truc correct
+# define MOV_SPEED 0.01//a voir
+# define EPSILON 1e-5//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
+# define M_PI 3.14159265358979323846
 
 /*#############   FREE & UTILS   ###########*/
 /*free.c*/

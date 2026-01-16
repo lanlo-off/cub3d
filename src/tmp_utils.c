@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:52:39 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:40:37 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	load_tex(t_mlx *mlx, t_tex *tex, char *path)
 		return ;
 	}
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
-	printf("img [%p] | addr [%p] | width [%d] | height [%d]\n", tex->img, tex->addr, tex->width, tex->height);
+	// printf("img [%p] | addr [%p] | width [%d] | height [%d]\n", tex->img, tex->addr, tex->width, tex->height);
 }
 
 /**
@@ -135,13 +135,17 @@ void	load_tex(t_mlx *mlx, t_tex *tex, char *path)
  */
 bool	load_textures(t_game *g)
 {
-	printf("mlx [%p] | tex_NO [%p] | tex_SO [%p] | tex_WE [%p] | tex_EA [%p]\n", g->mlx, g->tex_NO, g->tex_SO, g->tex_WE, g->tex_EA);
+	// printf("mlx [%p] | tex_NO [%p] | tex_SO [%p] | tex_WE [%p] | tex_EA [%p]\n", g->mlx, g->tex_NO, g->tex_SO, g->tex_WE, g->tex_EA);
 	if (!g->mlx || !g->tex_NO || !g->tex_SO || !g->tex_WE || !g->tex_EA)
 		return (false);
-	load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
-	load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
-	load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
-	load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
+	// load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
+	// load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
+	// load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
+	// load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
+	load_tex(g->mlx, g->tex_NO, "./textures/brick.xpm");
+	load_tex(g->mlx, g->tex_SO, "./textures/iron.xpm");
+	load_tex(g->mlx, g->tex_WE, "./textures/stone.xpm");
+	load_tex(g->mlx, g->tex_EA, "./textures/wood.xpm");
 	return (true);
 }
 

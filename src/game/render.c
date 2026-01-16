@@ -6,11 +6,42 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:56:12 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:35:03 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+// static void	draw_wall(t_img *img, t_ray ray, t_player *player)
+// {
+// 	int	y;
+// 	int	color;
+// 	double	wall_x;
+// 	int		texture_x;
+// 	int		texture_y;
+	
+// 	(void)player;
+// 	if (ray.frontier_type == VERTICAL)
+// 		wall_x = ray.hit_y - floor(ray.hit_y);
+// 	else
+// 		wall_x = ray.hit_x - floor(ray.hit_x);
+// 		// wall_x = player->x + ray.perp_dist * ray.dir_x;
+// 	// wall_x -= floor(wall_x);
+// 	texture_x = (int)(wall_x * (double)(ray.wall_texture->width));
+// 	if (ray.frontier_type == VERTICAL && ray.dir_x > 0)
+// 		texture_x = ray.wall_texture->width - texture_x - 1;
+// 	if (ray.frontier_type == HORIZONTAL && ray.dir_y < 0)
+// 		texture_x = ray.wall_texture->width - texture_x - 1;
+// 	y = ray.wall_start;
+// 	// printf("Draw_wall : index = [%d], y = [%d], wall-start = [%d], wall-end = [%d]\n", ray.index, y, ray.wall_start, ray.wall_end);
+// 	while (y <= ray.wall_end && y < WIN_HEIGHT)
+// 	{
+// 		texture_y = ((y - ray.wall_start) * ray.wall_texture->height) / ray.wall_height;
+// 		color = get_color_from_xpm(texture_x, texture_y, ray.wall_texture);
+// 		put_pixel(img, ray.index, y, color);
+// 		y++;
+// 	}
+// }
 
 static void	draw_wall(t_img *img, t_ray ray, t_player *player)
 {
@@ -19,12 +50,14 @@ static void	draw_wall(t_img *img, t_ray ray, t_player *player)
 	double	wall_x;
 	int		texture_x;
 	int		texture_y;
-
+	
+	(void)player;
 	if (ray.frontier_type == VERTICAL)
-		wall_x = player->y + ray.perp_dist * ray.dir_y;
+		wall_x = ray.hit_y - floor(ray.hit_y);
 	else
-		wall_x = player->x + ray.perp_dist * ray.dir_x;
-	wall_x -= floor(wall_x);
+		wall_x = ray.hit_x - floor(ray.hit_x);
+		// wall_x = player->x + ray.perp_dist * ray.dir_x;
+	// wall_x -= floor(wall_x);
 	texture_x = (int)(wall_x * (double)(ray.wall_texture->width));
 	if (ray.frontier_type == VERTICAL && ray.dir_x > 0)
 		texture_x = ray.wall_texture->width - texture_x - 1;
@@ -46,7 +79,7 @@ static void	draw_floor(t_game *g, t_img *img, t_ray ray)
 	int	y;
 	int	color;
 
-	y = ray.wall_end + 1;//car en bas de la fenetre = y est au max
+	y = ray.wall_end;//car en bas de la fenetre = y est au max
 	color = rgb_to_int(g->floor_color);
 	while (y < WIN_HEIGHT && y >= WIN_HEIGHT / 2)
 	{

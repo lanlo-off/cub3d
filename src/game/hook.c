@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:42:58 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:00:26 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:05:11 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,36 @@ int	game_loop(t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
-	if (keycode == KEY_ESC)
+	if (keycode == KEY_ESC || keycode == KEY_ESC_W)
 		exit_game(game);
-	if (keycode == KEY_LEFT)
-		(game->key->left = true, printf("Rot gauche\n"));//retirer les printf par la suite
-	if (keycode == KEY_RIGHT)
-		game->key->right = true, printf("Rot droite\n");
-	if (keycode == KEY_W)
-		game->key->w = true, printf("Avance\n");
-	if (keycode == KEY_S)
-		game->key->s = true, printf("Recule\n");
-	if (keycode == KEY_A)
-		game->key->a = true, printf("Strafe gauche\n");
-	if (keycode == KEY_D)
-		game->key->d = true, printf("Strafe droite\n");
+	if (keycode == KEY_LEFT || keycode == KEY_LEFT_W)
+		game->key->left = true;//, printf("Rot gauche\n");//retirer les printf par la suite
+	if (keycode == KEY_RIGHT || keycode == KEY_RIGHT_W)
+		game->key->right = true;//, printf("Rot droite\n");
+	if (keycode == KEY_W || keycode == KEY_W_W)
+		game->key->w = true;//, printf("Avance\n");
+	if (keycode == KEY_S || keycode == KEY_S_W)
+		game->key->s = true;//, printf("Recule\n");
+	if (keycode == KEY_A || keycode == KEY_A_W)
+		game->key->a = true;//, printf("Strafe gauche\n");
+	if (keycode == KEY_D || keycode == KEY_D_W)
+		game->key->d = true;//, printf("Strafe droite\n");
 	return (0);
 }
 
 int	key_release(int keycode, t_game *game)
 {
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT || keycode == KEY_LEFT_W)
 		game->key->left = false;
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT || keycode == KEY_RIGHT_W)
 		game->key->right = false;
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_W_W)
 		game->key->w = false;
-	if (keycode == KEY_S)
+	if (keycode == KEY_S || keycode == KEY_S_W)
 		game->key->s = false;
-	if (keycode == KEY_A)
+	if (keycode == KEY_A || keycode == KEY_A_W)
 		game->key->a = false;
-	if (keycode == KEY_D)
+	if (keycode == KEY_D || keycode == KEY_D_W)
 		game->key->d = false;
 	return (0);
 }

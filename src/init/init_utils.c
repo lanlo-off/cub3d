@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:48:30 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 10:12:59 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:08:57 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,15 @@ static void	is_player2(char c, t_player *player)
 	{
 		player->dir_x = -1;
 		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = 0.66;
-
+		// player->plane_x = 0;
+		// player->plane_y = 0.66;
 	}
 	if (c == 'E')
 	{
 		player->dir_x = 1;
 		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = -0.66;
+		// player->plane_x = 0;
+		// player->plane_y = -0.66;
 	}
 }
 
@@ -56,19 +55,21 @@ static bool	is_player(int i, int j, char c, t_player *player)
 	{
 		player->dir_x = 0;
 		player->dir_y = -1;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
+		// player->plane_x = 0.66;
+		// player->plane_y = 0;
 	}
 	if (c == 'S')
 	{
 		player->dir_x = 0;
 		player->dir_y = 1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
+		// player->plane_x = -0.66;
+		// player->plane_y = 0;
 	}
 	is_player2(c, player);
 	player->x = j + 0.5;
 	player->y = i + 0.5;
+	player->plane_x = -player->dir_y * tan(M_PI / 6);
+	player->plane_y = player->dir_x * tan(M_PI / 6);
 	return (true);
 }
 
