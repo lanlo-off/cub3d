@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:19:07 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/14 18:14:01 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:00:37 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 
 void	rotate(t_player *player, double rot)
@@ -36,7 +36,7 @@ bool	is_in_map(double x, int value)
 //  * 
 //  * @param map 
 //  * @param player 
-//  * @param ms + MOV_SPEED si on hook un W (avance) ; - MOV_SPEED si c'est un S (recule)
+//  * @param ms + MOV_SPEED si on hook un W (avance) ; -MOV_SPEED si c'est un S (recule)
 //  */
 // void	move_in_line(char **grid, t_player *player, double ms)
 // {

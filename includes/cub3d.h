@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 19:49:41 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:57:33 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@
 # define MM_NB_RAY 120
 # define ROT_SPEED 0.02//radians (~3 degrés)
 # define MOV_SPEED 0.02//a voir
-# define EPSILON 1e-6//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
+# define EPSILON 1e-30//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
 
 /*#############   FREE & UTILS   ###########*/
 /*free.c*/
 void	free_map(t_map *map);
-void	free_texture(t_tex *tex);
+void	free_tex(t_game *g, t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 void	free_img(t_img *img);
 int		exit_game(t_game *game);
@@ -62,6 +62,7 @@ bool	get_player_start(char **map, t_player *player);
 void	error_init_mlx(t_game *game);
 void	error_init_win(t_game *game, t_mlx *mlx);
 void	error_init_img(t_game *game);
+void	error_init_player(t_game *game, t_player *player);
 
 /*#############   GAME   ###########*/
 
@@ -79,14 +80,17 @@ void	print_img(t_game *game, void *img, int i, int j);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	reset_background(t_img *img);
 
-/*ray.c & ray_utils.c*/
-int		rgb_to_int(t_color *color);
-bool	print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
+/*dda.c*/
 void	get_ray_values(t_ray *ray, t_player *player);
 bool	calculate_hitpoint(t_game *g, t_ray *ray, t_map *map, t_player *player);
 
 /*render.c*/
 void	render(t_game *game, t_mlx *mlx, t_img *img);
+
+/*render_utils.c*/
+int		rgb_to_int(t_color *color);
+int		get_color_from_xpm(int x, int y, t_tex *tex);
+
 
 /*#############   MINIMAP   ###########*/
 void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
@@ -101,6 +105,7 @@ void	get_map(t_map *map, const char *filename);
 int		count_line_len(const char *filename);
 int		count_lines(const char *filename);
 bool	load_textures(t_game *g);
+bool	set_floor_ceiling_color(t_game *g);
 void	set_color(t_color *color, char *name);
 
 

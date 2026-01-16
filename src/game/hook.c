@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:42:58 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 19:03:56 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:00:26 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	try_moving(t_player *p, t_map *m, double dx, double dy)
 {
@@ -53,9 +53,9 @@ static void	move_player(t_game *g, t_key *key, t_player *p)
 int	game_loop(t_game *game)
 {
 	if (game->key->left)
-		(rotate(game->player, -ROT_SPEED), printf("Rot gauche\n"));
+		rotate(game->player, -ROT_SPEED);
 	if (game->key->right)
-		(rotate(game->player, ROT_SPEED), printf("Rot droite\n"));
+		rotate(game->player, ROT_SPEED);
 	move_player(game, game->key, game->player);
 	render(game, game->mlx, game->img);
 	// print_minimap(game, game->mlx, game->img);
@@ -67,17 +67,17 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		exit_game(game);
 	if (keycode == KEY_LEFT)
-		game->key->left = true;
+		(game->key->left = true, printf("Rot gauche\n"));//retirer les printf par la suite
 	if (keycode == KEY_RIGHT)
-		game->key->right = true;
+		game->key->right = true, printf("Rot droite\n");
 	if (keycode == KEY_W)
-		game->key->w = true;
+		game->key->w = true, printf("Avance\n");
 	if (keycode == KEY_S)
-		game->key->s = true;
+		game->key->s = true, printf("Recule\n");
 	if (keycode == KEY_A)
-		game->key->a = true;
+		game->key->a = true, printf("Strafe gauche\n");
 	if (keycode == KEY_D)
-		game->key->d = true;
+		game->key->d = true, printf("Strafe droite\n");
 	return (0);
 }
 

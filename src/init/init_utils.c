@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:48:30 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:20:27 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:12:59 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 bool	init_textures(t_game *g)
 {

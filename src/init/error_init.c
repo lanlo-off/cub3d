@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 16:35:13 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 15:46:11 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:18:27 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 /**
  * @brief Echec en malloc mlx->ptr ou initialisant la mlx
@@ -24,8 +24,14 @@ void	error_init_mlx(t_game *game)
 	if (game->mlx)
 		free(game->mlx);
 	free_map(game->map);
-	if (game->textures)
-		free_textures(game->textures);
+	if (game->tex_NO)
+		free_tex(game, game->tex_NO);
+	if (game->tex_SO)
+		free_tex(game, game->tex_SO);
+	if (game->tex_WE)
+		free_tex(game, game->tex_WE);
+	if (game->tex_EA)
+		free_tex(game, game->tex_EA);
 	if (game->ceiling_color)
 		free(game->ceiling_color);//ou besoin d'une fonction ?
 	if (game->floor_color)

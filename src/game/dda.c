@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 19:58:18 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:12:43 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-/**
- * @brief Transforme un rgb en int en partant du principe que 
- * une couleur devient un int qui s'ecrit (0x00RRGGBB)
- * 
- * Un int fait 32 bits :
-[00000000][RRRRRRRR][GGGGGGGG][BBBBBBBB]
-    8 bits     8         8         8
-r << 16 place le rouge dans l’octet 2
-g << 8 place le vert dans l’octet 1
-b reste dans l’octet 0
-
- * @param color 
- * @return int 
- */
-int	rgb_to_int(t_color *color)
-{
-	int	res;
-
-	res = (color->r << 16) | (color->g << 8) | color->b;
-	return (res);
-}
+#include "../../includes/cub3d.h"
 
 static void	advance_to_wall(t_ray *ray, t_map *map)
 {

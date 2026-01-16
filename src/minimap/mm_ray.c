@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:52:36 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:57:41 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:13:04 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	mm_draw_ray_floor(t_img *img, t_player *player, t_ray ray)
 {

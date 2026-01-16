@@ -3,12 +3,12 @@ SRCS = src/main.c\
 
 SRCS += src/init/init.c\
 	src/init/error_init.c\
-	src/init_utils.c\
+	src/init/init_utils.c
 
 SRCS +=	src/game/print_img.c\
 	src/game/render.c\
-	src/game/ray.c\
-	src/game/ray_utils.c\
+	src/game/render_utils.c\
+	src/game/dda.c\
 	src/game/hook.c\
 	src/game/hook_utils.c
 
@@ -20,7 +20,7 @@ SRCS += src/tmp_utils.c
 	
 OBJS_DIR = obj
 
-OBJS = $(SRCS:src/%.c=$(OBJS_DIR)/%.o)
+OBJS = $(SRCS:src/%/%.c=$(OBJS_DIR)/%.o)
 
 NAME = cub3d
 

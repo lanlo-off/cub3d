@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 19:07:36 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:52:39 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	load_tex(t_mlx *mlx, t_tex *tex, char *path)
 		return ;
 	}
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
+	printf("img [%p] | addr [%p] | width [%d] | height [%d]\n", tex->img, tex->addr, tex->width, tex->height);
 }
 
 /**
@@ -134,12 +135,30 @@ void	load_tex(t_mlx *mlx, t_tex *tex, char *path)
  */
 bool	load_textures(t_game *g)
 {
+	printf("mlx [%p] | tex_NO [%p] | tex_SO [%p] | tex_WE [%p] | tex_EA [%p]\n", g->mlx, g->tex_NO, g->tex_SO, g->tex_WE, g->tex_EA);
 	if (!g->mlx || !g->tex_NO || !g->tex_SO || !g->tex_WE || !g->tex_EA)
 		return (false);
-	load_tex(g->mlx, g->tex_NO, "textures/wall_NO.xpm");
-	load_tex(g->mlx, g->tex_SO, "textures/wall_SO.xpm");
-	load_tex(g->mlx, g->tex_WE, "textures/wall_WE.xpm");
-	load_tex(g->mlx, g->tex_EA, "textures/wall_EA.xpm");
+	load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
+	load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
+	load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
+	load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
+	return (true);
+}
+
+bool	set_floor_ceiling_color(t_game *g)
+{
+	g->ceiling_color = ft_calloc(1, sizeof(t_color));
+	if (!g->ceiling_color)
+		return (false);
+	g->floor_color = ft_calloc(1, sizeof(t_color));
+	if (!g->ceiling_color)
+		return (free(g->ceiling_color), false);
+	g->floor_color->r = 139;
+	g->floor_color->g = 69;
+	g->floor_color->b = 19;
+	g->ceiling_color->r = 135;
+	g->ceiling_color->g = 206;
+	g->ceiling_color->b = 235;
 	return (true);
 }
 

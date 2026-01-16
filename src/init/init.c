@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:48:15 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 16:21:44 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:53:16 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 /**
  * @brief Permet de creer les coquilles des structures
  * game
@@ -24,9 +24,6 @@
  */
 bool	init_struct(t_game *g)
 {
-	g = ft_calloc(sizeof(t_game), 1);
-	if (!g)
-		return (false);
 	g->map = ft_calloc(sizeof(t_map), 1);
 	if (!g->map)
 		return (free(g), false);
@@ -96,5 +93,6 @@ bool	init_game(t_game *game)
 	init_struct_mlx(game, game->mlx);
 	init_struct_img(game, game->img);
 	init_struct_player(game, game->player);
+	load_textures(game);
 	return (true);
 }

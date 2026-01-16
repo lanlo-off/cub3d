@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 18:55:57 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:13:03 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	mm_get_ray_values(t_ray *ray, t_player *player)
 {

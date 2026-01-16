@@ -6,11 +6,11 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/15 19:04:34 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:13:01 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 // Dessine un bloc bleu de TILE_SIZE x TILE_SIZE avec une marge de 5px entre chaque tile
 static void draw_block_img(char *img_data, int img_width, int x, int y)
