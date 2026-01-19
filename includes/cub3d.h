@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 14:13:31 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:01:02 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 void	free_map(t_map *map);
 void	free_tex(t_game *g, t_tex *tex);
 void	free_mlx(t_mlx *mlx);
-void	free_img(t_img *img);
+void	free_img(t_game *game, t_img *img);
 int		exit_game(t_game *game);
 
 /*#############   INIT   ###########*/

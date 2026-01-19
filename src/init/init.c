@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:48:15 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:53:16 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:04:12 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
  */
 bool	init_struct(t_game *g)
 {
-	g->map = ft_calloc(sizeof(t_map), 1);
-	if (!g->map)
-		return (free(g), false);
+	// g->map = ft_calloc(sizeof(t_map), 1);
+	// if (!g->map)
+	// 	return (free(g), false);
 	g->key = ft_calloc(1, sizeof(t_key));
 	if (!g->key)
-		return (free(g->map), free(g), false);
+		return (free(g), false);
 	if (!init_textures(g))
-		return (free(g->key), free(g->map), free(g), false);
+		return (free(g->key), free(g), false);
 	return (true);
 }
 

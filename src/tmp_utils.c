@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 13:40:37 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 10:43:01 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,12 @@ bool	set_floor_ceiling_color(t_game *g)
 	g->floor_color = ft_calloc(1, sizeof(t_color));
 	if (!g->ceiling_color)
 		return (free(g->ceiling_color), false);
-	g->floor_color->r = 139;
-	g->floor_color->g = 69;
-	g->floor_color->b = 19;
+	// g->floor_color->r = 139;
+	// g->floor_color->g = 69;
+	// g->floor_color->b = 19;
+	g->floor_color->r = 255;
+	g->floor_color->g = 20;
+	g->floor_color->b = 147;
 	g->ceiling_color->r = 135;
 	g->ceiling_color->g = 206;
 	g->ceiling_color->b = 235;

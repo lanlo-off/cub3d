@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 14:35:03 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 11:20:17 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,32 @@
 // 	}
 // }
 
-static void	draw_wall(t_img *img, t_ray ray, t_player *player)
+static void	draw_wall(t_img *img, t_ray ray)
 {
 	int	y;
 	int	color;
-	double	wall_x;
-	int		texture_x;
+	double	wall_x;//endroit precis ou le mur a ete tape (entre 0 et 1), i.e. le pourcentage du mur auquel on l'a touche
+	int		texture_x;//on reprend ce pourcentage et on l'applique a la texture pour recuperer le bon pixel
 	int		texture_y;
 	
-	(void)player;
+	/*1- On calcule l'endroit precis ou le mur a ete tape (entre 0 et 1), 
+	i.e. le pourcentage du mur auquel on l'a touche*/
 	if (ray.frontier_type == VERTICAL)
 		wall_x = ray.hit_y - floor(ray.hit_y);
 	else
 		wall_x = ray.hit_x - floor(ray.hit_x);
-		// wall_x = player->x + ray.perp_dist * ray.dir_x;
-	// wall_x -= floor(wall_x);
+	
+	/*2- On reprend ce pourcentage et on l'applique a la texture pour recuperer le bon pixel*/
 	texture_x = (int)(wall_x * (double)(ray.wall_texture->width));
+
+	/*3- Ce bloc sert a eviter l'inversion de l'impression des textures*/
 	if (ray.frontier_type == VERTICAL && ray.dir_x > 0)
 		texture_x = ray.wall_texture->width - texture_x - 1;
 	if (ray.frontier_type == HORIZONTAL && ray.dir_y < 0)
 		texture_x = ray.wall_texture->width - texture_x - 1;
-	y = ray.wall_start;
+
+	/*4- On demarre au plus grand entre wall_start et 0 pour eviter de boucler de -1000000 a 0 pour rien*/
+	y = fmax(ray.wall_start, 0);
 	// printf("Draw_wall : index = [%d], y = [%d], wall-start = [%d], wall-end = [%d]\n", ray.index, y, ray.wall_start, ray.wall_end);
 	while (y <= ray.wall_end && y < WIN_HEIGHT)
 	{
@@ -115,7 +120,7 @@ void render(t_game *game, t_mlx *mlx, t_img *img)
 		get_ray_values(&ray, game->player);//init les valeurs du ray en fonction du joueur et de son index
 		calculate_hitpoint(game, &ray, game->map, game->player);//calcule tout sur le mur
 		draw_ceiling(game, game->img, ray);
-		draw_wall(game->img, ray, game->player);
+		draw_wall(game->img, ray);
 		draw_floor(game, game->img, ray);
 		nb_ray++;
 	}

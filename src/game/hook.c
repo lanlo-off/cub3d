@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:42:58 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 14:05:11 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 10:50:47 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,63 @@ int	game_loop(t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
-	if (keycode == KEY_ESC || keycode == KEY_ESC_W)
+	// if (keycode == KEY_ESC)
+	// 	exit_game(game);
+	// if (keycode == KEY_LEFT)
+	// 	game->key->left = true;//, printf("Rot gauche\n");//retirer les printf par la suite
+	// if (keycode == KEY_RIGHT)
+	// 	game->key->right = true;//, printf("Rot droite\n");
+	// if (keycode == KEY_W)
+	// 	game->key->w = true;//, printf("Avance\n");
+	// if (keycode == KEY_S)
+	// 	game->key->s = true;//, printf("Recule\n");
+	// if (keycode == KEY_A)
+	// 	game->key->a = true;//, printf("Strafe gauche\n");
+	// if (keycode == KEY_D)
+	// 	game->key->d = true;//, printf("Strafe droite\n");
+	// printf("[%i]\n", keycode);
+	if (keycode == 65307)
 		exit_game(game);
-	if (keycode == KEY_LEFT || keycode == KEY_LEFT_W)
+	if (keycode == 65361)
 		game->key->left = true;//, printf("Rot gauche\n");//retirer les printf par la suite
-	if (keycode == KEY_RIGHT || keycode == KEY_RIGHT_W)
+	if (keycode == 65363)
 		game->key->right = true;//, printf("Rot droite\n");
-	if (keycode == KEY_W || keycode == KEY_W_W)
+	if (keycode == 119)
 		game->key->w = true;//, printf("Avance\n");
-	if (keycode == KEY_S || keycode == KEY_S_W)
+	if (keycode == 115)
 		game->key->s = true;//, printf("Recule\n");
-	if (keycode == KEY_A || keycode == KEY_A_W)
+	if (keycode == 97)
 		game->key->a = true;//, printf("Strafe gauche\n");
-	if (keycode == KEY_D || keycode == KEY_D_W)
+	if (keycode == 100)
 		game->key->d = true;//, printf("Strafe droite\n");
 	return (0);
 }
 
 int	key_release(int keycode, t_game *game)
 {
-	if (keycode == KEY_LEFT || keycode == KEY_LEFT_W)
+	// if (keycode == KEY_LEFT)
+	// 	game->key->left = false;
+	// if (keycode == KEY_RIGHT)
+	// 	game->key->right = false;
+	// if (keycode == KEY_W)
+	// 	game->key->w = false;
+	// if (keycode == KEY_S)
+	// 	game->key->s = false;
+	// if (keycode == KEY_A)
+	// 	game->key->a = false;
+	// if (keycode == KEY_D)
+	// 	game->key->d = false;
+	if (keycode == 65361)
 		game->key->left = false;
-	if (keycode == KEY_RIGHT || keycode == KEY_RIGHT_W)
+	if (keycode == 65363)
 		game->key->right = false;
-	if (keycode == KEY_W || keycode == KEY_W_W)
+	if (keycode == 119)
 		game->key->w = false;
-	if (keycode == KEY_S || keycode == KEY_S_W)
+	if (keycode == 115)
 		game->key->s = false;
-	if (keycode == KEY_A || keycode == KEY_A_W)
+	if (keycode == 97)
 		game->key->a = false;
-	if (keycode == KEY_D || keycode == KEY_D_W)
+	if (keycode == 100)
 		game->key->d = false;
 	return (0);
 }

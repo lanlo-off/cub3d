@@ -6,19 +6,21 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 10:29:07 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:02:11 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	free_img(t_img *img)
+void	free_img(t_game *game, t_img *img)
 {
+	mlx_destroy_image(game->mlx->mlx_ptr, img->img_ptr);
 	free(img);
 }
 
 void	free_mlx(t_mlx *mlx)
 {
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	if (mlx->mlx_ptr)//a voir si ce free est necessaire
 		free(mlx->mlx_ptr);
@@ -79,11 +81,9 @@ int	exit_game(t_game *game)
 	if (game->floor_color)
 		free(game->floor_color);
 	if (game->img)
-		free_img(game->img);
+		free_img(game, game->img);
 	if (game->map)
 		free_map(game->map);
-	if (game->mlx)
-		free_mlx(game->mlx);
 	if (game->player)
 		free(game->player);
 	if (game->tex_NO)
@@ -94,6 +94,10 @@ int	exit_game(t_game *game)
 		free_tex(game, game->tex_WE);
 	if (game->tex_EA)
 		free_tex(game, game->tex_EA);
+	if (game->mlx)
+		free_mlx(game->mlx);
+	if (game->key)
+		free(game->key);
 	free(game);
-	return (0);
+	exit (0);
 }

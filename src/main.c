@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:41:18 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 11:53:11 by llechert         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:07:26 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(int ac, char **av)
 	init_game(game);
 	// print_minimap(game, game->mlx, game->img);
 	mlx_loop(game->mlx->mlx_ptr);
-	exit_game(game);
+	// exit_game(game);
 	return (0);
 }
