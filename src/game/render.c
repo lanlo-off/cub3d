@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:35:35 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/19 11:20:17 by llechert         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:42:35 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	draw_floor(t_game *g, t_img *img, t_ray ray)
 	int	color;
 
 	y = ray.wall_end;//car en bas de la fenetre = y est au max
-	color = rgb_to_int(g->floor_color);
+	color = rgb_to_int(g->f_color);
 	while (y < WIN_HEIGHT && y >= WIN_HEIGHT / 2)
 	{
 		put_pixel(img, ray.index, y, color);
@@ -99,7 +99,7 @@ static void	draw_ceiling(t_game *g, t_img *img, t_ray ray)
 	int	color;
 
 	y = 0;
-	color = rgb_to_int(g->ceiling_color);
+	color = rgb_to_int(g->c_color);
 	while (y < ray.wall_start && y <= WIN_HEIGHT / 2)
 	{
 		put_pixel(img, ray.index, y, color);

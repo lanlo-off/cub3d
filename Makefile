@@ -12,11 +12,24 @@ SRCS +=	src/game/print_img.c\
 	src/game/hook.c\
 	src/game/hook_utils.c
 
+SRCS +=	src/parsing/parser.c\
+	src/parsing/check_file.c\
+	src/parsing/map_utils/check_utils.c\
+	src/parsing/map_utils/check_utils2.c\
+	src/parsing/map_utils/get_dimensions.c\
+	src/parsing/map_utils/pad_map.c \
+	src/parsing/check/check_closemap.c\
+	src/parsing/check/check_player.c\
+	src/parsing/check/check_texture.c\
+	src/parsing/check/findmap_elements.c \
+
 SRCS += src/minimap/minimap.c\
 	src/minimap/mm_ray.c\
 	src/minimap/mm_ray_utils.c
 
 SRCS += src/tmp_utils.c
+
+SRCS += src/error.c
 	
 OBJS_DIR = obj
 

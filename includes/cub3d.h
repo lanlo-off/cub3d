@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/19 15:01:02 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:07:24 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <math.h>
 # include <stdlib.h>
 # include "../mlx/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
+//# include <X11/X.h>
+//# include <X11/keysym.h>
 # include "../libft/libft.h"
 
 # include <fcntl.h>
@@ -98,6 +98,21 @@ void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
 bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
 void	mm_get_ray_values(t_ray *ray, t_player *player);
 bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
+
+/*#############   PARSING   ###########*/
+int		is_file_valid(const char *filename, t_extension expected);
+bool	valid_path(char *arg);
+char	*skip_identifier(char *line);
+bool    findmap_elements(t_game *game);
+bool    check_texture(t_game *game);
+char    *skip_spaces(char *line);
+bool    empty_line(char *str);
+int     count_raw(char *map_path);
+int     valid_line(char *tofind, char *line);
+bool    fill_raw(t_game *game);
+bool    is_last(t_game *game);
+bool    check_player_pos(t_map *map);
+bool    check_map_closed(t_map *map);
 
 /*#############   TEMPORAIRE   ###########*/
 /*tmp_utils.c*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/19 10:43:01 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/05 18:16:24 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,6 @@ bool	load_textures(t_game *g)
 	// printf("mlx [%p] | tex_NO [%p] | tex_SO [%p] | tex_WE [%p] | tex_EA [%p]\n", g->mlx, g->tex_NO, g->tex_SO, g->tex_WE, g->tex_EA);
 	if (!g->mlx || !g->tex_NO || !g->tex_SO || !g->tex_WE || !g->tex_EA)
 		return (false);
-	// load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
-	// load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
-	// load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
-	// load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
 	load_tex(g->mlx, g->tex_NO, "./textures/brick.xpm");
 	load_tex(g->mlx, g->tex_SO, "./textures/iron.xpm");
 	load_tex(g->mlx, g->tex_WE, "./textures/stone.xpm");

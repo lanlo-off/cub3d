@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 13:28:24 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:48:12 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define STRUCT_H
 
 # include <stdbool.h>
+
+typedef enum e_extension
+{
+	EXT_UNKNOWN = -1,
+	EXT_ISDIR = 0,
+    EXT_CUB = 0,
+    EXT_XPM = 1
+}   t_extension;
 
 typedef struct s_mlx
 {
@@ -40,9 +48,14 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	char	**raw;
 	char	**grid;
+	int		start;
+	int		end;
 	int		width;
 	int		height;
+	int		max;
+	int		*p_pos;
 }	t_map;
 
 /**
@@ -73,13 +86,17 @@ typedef struct s_tex
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		flag;
+	char	*path;
 }	t_tex;
 
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
+	char	*line;
+	int		flag;
 }	t_color;
 
 typedef enum s_frontier
@@ -138,10 +155,11 @@ typedef struct s_game
 	t_tex		*tex_SO;
 	t_tex		*tex_WE;
 	t_tex		*tex_EA;
-	t_color		*floor_color;
-	t_color		*ceiling_color;
+	t_color		*f_color;
+	t_color		*c_color;
 	t_key		*key;
 	int			tile_size;
+	char		*map_path;
 }	t_game;
 
 #endif

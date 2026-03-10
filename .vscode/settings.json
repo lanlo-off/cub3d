@@ -1,3 +1,5 @@
 {
-	"makefile.configureOnOpen": false
+	"makefile.configureOnOpen": false,
+	"C_Cpp.errorSquiggles": "enabled",
+	"C_Cpp.intelliSenseEngine": "default"
 }

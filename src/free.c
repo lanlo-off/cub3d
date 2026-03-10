@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/19 15:02:11 by llechert         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:42:35 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int	exit_game(t_game *game)
 {
 	if (!game)
 		return (0);
-	if (game->ceiling_color)
-		free(game->ceiling_color);
-	if (game->floor_color)
-		free(game->floor_color);
+	if (game->c_color)
+		free(game->c_color);
+	if (game->f_color)
+		free(game->f_color);
 	if (game->img)
 		free_img(game, game->img);
 	if (game->map)

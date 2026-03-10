@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:48:30 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 13:08:57 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/05 18:28:24 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,11 @@ static void	is_player2(char c, t_player *player)
 	{
 		player->dir_x = -1;
 		player->dir_y = 0;
-		// player->plane_x = 0;
-		// player->plane_y = 0.66;
 	}
 	if (c == 'E')
 	{
 		player->dir_x = 1;
 		player->dir_y = 0;
-		// player->plane_x = 0;
-		// player->plane_y = -0.66;
 	}
 }
 
@@ -55,15 +51,11 @@ static bool	is_player(int i, int j, char c, t_player *player)
 	{
 		player->dir_x = 0;
 		player->dir_y = -1;
-		// player->plane_x = 0.66;
-		// player->plane_y = 0;
 	}
 	if (c == 'S')
 	{
 		player->dir_x = 0;
 		player->dir_y = 1;
-		// player->plane_x = -0.66;
-		// player->plane_y = 0;
 	}
 	is_player2(c, player);
 	player->x = j + 0.5;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 16:35:13 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 10:18:27 by llechert         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:42:35 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	error_init_mlx(t_game *game)
 		free_tex(game, game->tex_WE);
 	if (game->tex_EA)
 		free_tex(game, game->tex_EA);
-	if (game->ceiling_color)
-		free(game->ceiling_color);//ou besoin d'une fonction ?
-	if (game->floor_color)
-		free(game->floor_color);//ou besoin d'une fonction ?
+	if (game->c_color)
+		free(game->c_color);//ou besoin d'une fonction ?
+	if (game->f_color)
+		free(game->f_color);//ou besoin d'une fonction ?
 	free(game);
 	exit(1);
 }
