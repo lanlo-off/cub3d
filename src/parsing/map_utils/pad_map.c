@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:13:24 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/09 10:52:34 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 09:30:14 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,57 +19,58 @@ char	**mallocfile(t_game *g)
     int     height;
 
     height = g->map->end - g->map->start;
-	res = malloc(sizeof(int *) * height);
+	res = malloc(sizeof(char *) * (height + 1));
 	if (!res)
-		free_exit(g);
+			ft_error(g, ERR_MALLOC);
 	i = 0;
 	while (i < height)
 	{
-		res[i] = malloc(sizeof(int) * g->map->max + 1);
+		res[i] = malloc(sizeof(char) * (g->map->max + 1));
 		if (!res[i])
 		{
 			while (--i >= 0)
 				free(res[i]);
-			free(res);
-			free_exit(g);
+			(free(res), ft_error(g, ERR_MALLOC));
 		}
 		i++;
 	}
+    res[i] = NULL;
 	return (res);
 }
 
-char	*pad_line(t_map *map)
+void	pad_line(char *mapped_line, char *raw_line, int max_len)
 {
-	char	*new;
 	int		i;
 
 	i = 0;
-	while (map->raw[i] && i < map->max)
+	while (raw_line && raw_line[i] && i < max_len)
     {
-        if (map->raw[i] == " ")
-		    new[i] = 'a';
+        if (raw_line[i] == ' ')
+		    mapped_line[i] = 'a';
         else
-		    new[i] = map->raw[i];
+            mapped_line[i] = raw_line[i];
         i++;
     }
-	while (i < map->max)
-		new[i++] = 'a';
-	new[i] = '\0';
-	return (new);
+	while (i < max_len)
+		mapped_line[i++] = 'a';
+	mapped_line[i] = '\0';
 }
 
 bool    fill_grid(t_game *g)
 {
     int i;
+    int raw_i;
 
     g->map->grid = mallocfile(g);
 	if (!g->map->grid)
-		return (false, free_exit(g));
+		return (false);
     i = 0;
-    while (g->map->grid[i])
+    raw_i = g->map->start;
+    while (i < (g->map->end - g->map->start))
     {
-        g->map->grid[i] = pad_line(g->map);
+        pad_line(g->map->grid[i], g->map->raw[raw_i], g->map->max);
         i++;
+        raw_i++;
     }
     return (true);
 }

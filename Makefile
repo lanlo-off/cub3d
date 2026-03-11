@@ -20,7 +20,7 @@ SRCS +=	src/parsing/parser.c\
 	src/parsing/map_utils/pad_map.c \
 	src/parsing/check/check_closemap.c\
 	src/parsing/check/check_player.c\
-	src/parsing/check/check_texture.c\
+	src/parsing/check/check_textures.c\
 	src/parsing/check/findmap_elements.c \
 
 SRCS += src/minimap/minimap.c\
@@ -43,13 +43,13 @@ HEADER = includes/cub3d.h\
 
 LIBFT = libft/libft.a
 
-MLX_FLAGS = -L/usr/lib/X11 -lXext -lX11
+MLX_FLAGS = -L/usr/lib/X11 -L/opt/X11/lib -lXext -lX11
 
 MLX = mlx/libmlx.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -I/opt/X11/include
 
 all: $(NAME)
 

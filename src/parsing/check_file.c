@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 12:35:44 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/02/23 09:39:14 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:27:20 by maxime.m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static bool	is_dir(char *arg)
+static bool	is_dir(const char *arg)
 {
 	int	fd;
 
@@ -44,10 +44,10 @@ int	is_file_valid(const char *filename, t_extension expected)
 
 	ext = get_ext(filename);
 	if (ext == EXT_UNKNOWN)
-		return (error("Unknown extension"));
+		return (EXT_UNKNOWN);
 	if (ext == EXT_ISDIR)
-		return (error("Is a directory not a file"));
+		return (EXT_UNKNOWN);
 	if (ext != expected)
-		return (error("Wrong file type"));
+		return (EXT_UNKNOWN);
 	return (ext);
 }

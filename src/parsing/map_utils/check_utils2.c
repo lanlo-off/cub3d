@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 14:36:35 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/06 13:03:28 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 09:28:26 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int valid_line(char *tofind, char *line)
     int i;
     
     i = 0;
-    if (!line || !line[0])
+    if (!line || !line[0] || line[0] == '\n')
         return (0);
-    while (line[i])
+    while (line[i] && line[i] != '\n')
     {
         if (!ft_strchr(tofind, line[i]))
             return (0);
@@ -43,3 +43,17 @@ int valid_line(char *tofind, char *line)
     return (1);
 }
 
+bool is_numeric_string(char *str)
+{
+    int i = 0;
+    
+    if (!str || str[0] == '\0')
+        return (false);
+    while (str[i])
+    {
+        if (!ft_isdigit(str[i]))
+            return (false);
+        i++;
+    }
+    return (true);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/05 18:16:24 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:25:23 by maxime.m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,21 +147,24 @@ bool	load_textures(t_game *g)
 
 bool	set_floor_ceiling_color(t_game *g)
 {
-	g->ceiling_color = ft_calloc(1, sizeof(t_color));
-	if (!g->ceiling_color)
+	g->c_color = ft_calloc(1, sizeof(t_color));
+	if (!g->c_color)
 		return (false);
-	g->floor_color = ft_calloc(1, sizeof(t_color));
-	if (!g->ceiling_color)
-		return (free(g->ceiling_color), false);
-	// g->floor_color->r = 139;
-	// g->floor_color->g = 69;
-	// g->floor_color->b = 19;
-	g->floor_color->r = 255;
-	g->floor_color->g = 20;
-	g->floor_color->b = 147;
-	g->ceiling_color->r = 135;
-	g->ceiling_color->g = 206;
-	g->ceiling_color->b = 235;
+	g->f_color = ft_calloc(1, sizeof(t_color));
+	if (!g->c_color)
+    {
+        free(g->c_color);
+		return (false);
+    }
+	// g->f_color->r = 139;
+	// g->f_color->g = 69;
+	// g->f_color->b = 19;
+	g->f_color->r = 255;
+	g->f_color->g = 20;
+	g->f_color->b = 147;
+	g->c_color->r = 135;
+	g->c_color->g = 206;
+	g->c_color->b = 235;
 	return (true);
 }
 

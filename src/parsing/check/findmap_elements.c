@@ -6,24 +6,25 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:50:12 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/10 09:03:06 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 09:20:10 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-static void find_tex2(t_game *g, char *line)
+static bool find_tex2(t_game *g, char *line)
 {
-    if (ft_strncmp(line, "WE ", 3))
+    if (ft_strncmp(line, "WE ", 3) == 0)
     {
-        g->tex_WE->path = skip_spaces(line + 3);
+        g->tex_WE->path = ft_strdup(skip_spaces(line + 3));
         g->tex_WE->flag++;
     }
-    if (ft_strncmp(line, "EA ", 3))
+    else if (ft_strncmp(line, "EA ", 3) == 0)
     {
-        g->tex_EA->path = skip_spaces(line + 3);
+        g->tex_EA->path = ft_strdup(skip_spaces(line + 3));
         g->tex_EA->flag++;
     }
+    return (true);
 }
 
 static bool find_tex(t_game *g)
@@ -36,17 +37,18 @@ static bool find_tex(t_game *g)
     {
         line = skip_spaces(g->map->raw[i]);
         i++;
-        if (ft_strncmp(line, "NO ", 3))
+        if (ft_strncmp(line, "NO ", 3) == 0)
         {
-            g->tex_NO->path = skip_spaces(line + 3);
+            g->tex_NO->path = ft_strdup(skip_spaces(line + 3));
             g->tex_NO->flag++;
         }
-        if (ft_strncmp(line, "SO ", 3))
+        else if (ft_strncmp(line, "SO ", 3) == 0)
         {
-            g->tex_SO->path = skip_spaces(line + 3);
+            g->tex_SO->path = ft_strdup(skip_spaces(line + 3));
             g->tex_SO->flag++;            
         }
-       find_tex2(g, line);
+        else if (!find_tex2(g, line))
+            return (false);
     }
     if (g->tex_NO->flag == 1 && g->tex_SO->flag == 1 && \
         g->tex_WE->flag == 1 && g->tex_EA->flag == 1)
@@ -62,22 +64,23 @@ static bool find_color(t_game *g)
     i = 0;
     while (g->map->raw[i])
     {
-        while (empty_line(g->map->raw[i]))
+        while (g->map->raw[i] && empty_line(g->map->raw[i]))
             i++;
-        line = skip_spaces(g->map->raw[i]);
-        i++;
-        if (ft_strncmp(line, "F ", 2))
+        if (!g->map->raw[i])
+            break;
+        line = skip_spaces(g->map->raw[i++]);
+        if (ft_strncmp(line, "F ", 2) == 0)
         {
-            g->f_color->line = skip_spaces(line + 2);
+            g->f_color->line = ft_strdup(skip_spaces(line + 2));
             g->f_color->flag++;
         }
-        if (ft_strncmp(line, "C ", 2))
+        else if (ft_strncmp(line, "C ", 2) == 0)
         {
-            g->c_color->line = skip_spaces(line + 2);
+            g->c_color->line = ft_strdup(skip_spaces(line + 2));
             g->c_color->flag++;
         }
     }
-    if (g->f_color == 1 && g->c_color == 1)
+    if (g->f_color->flag == 1 && g->c_color->flag == 1)
         return (true);
     return (false);
 }
@@ -90,7 +93,7 @@ bool    find_map(t_game *g)
     i = 0;
     while (g->map->raw[i])
     {
-        while (valid_line(" 01NSEW", g->map->raw[i]))
+        while (g->map->raw[i] && valid_line(" 01NSEW", g->map->raw[i]))
         {
             if (valid_line(" 1", g->map->raw[i]) && (g->map->start < 0))
                 g->map->start = i;

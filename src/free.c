@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/02/24 15:42:35 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:07:33 by maxime.m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,42 @@ void	free_mlx(t_mlx *mlx)
 	free(mlx);
 }
 
-/**
- * @brief Free la map
- * En cas d'echec d'init ou de fin normale du jeu
- * 
- * @param map 
- */
+void	free_tab(char **tab)
+{
+    int i;
+
+    i = 0;
+    if (!tab)
+        return ;
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}
+
 void	free_map(t_map *map)
 {
-	int	i;
-
-	i = 0;
 	if (!map)
 		return ;
-	while (map->grid[i])
-	{
-		free(map->grid[i]);
-		i++;
-	}
-	free(map->grid);
+    if (map->raw)
+        free_tab(map->raw);
+    if (map->grid)
+        free_tab(map->grid);
+    if (map->p_pos)
+        free(map->p_pos);
 	free(map);
 }
 
-/**
- * @brief Free chacune des textures
- * En cas d'echec d'init ou de fin normale du jeu
- * 
- * @param textures 
- */
 void	free_tex(t_game *g, t_tex *texture)
 {
 	if (!texture)
 		return ;
-	if (texture->img)
+	if (g && g->mlx && texture->img)
 		mlx_destroy_image(g->mlx->mlx_ptr, texture->img);
+    if (texture->path)
+        free(texture->path);
 	free(texture);
 }
 
@@ -74,12 +76,28 @@ void	free_tex(t_game *g, t_tex *texture)
  */
 int	exit_game(t_game *game)
 {
+    free_game(game);
+	exit(EXIT_SUCCESS);
+}
+
+void free_game(t_game *game)
+{
 	if (!game)
-		return (0);
+		return ;
+    if (game->map_path)
+        free(game->map_path);
 	if (game->c_color)
+    {
+        if (game->c_color->line)
+            free(game->c_color->line);
 		free(game->c_color);
+    }
 	if (game->f_color)
+    {
+        if (game->f_color->line)
+            free(game->f_color->line);
 		free(game->f_color);
+    }
 	if (game->img)
 		free_img(game, game->img);
 	if (game->map)
@@ -98,6 +116,4 @@ int	exit_game(t_game *game)
 		free_mlx(game->mlx);
 	if (game->key)
 		free(game->key);
-	free(game);
-	exit (0);
 }

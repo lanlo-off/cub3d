@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:41:18 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/10 12:10:35 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:27:23 by maxime.m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	t_game	*game;
-	t_map	*map;
 
 	if (ac != 2)
 		return(printf("Wrong number of arguments : ./cub3d map.cub\n"), 1);

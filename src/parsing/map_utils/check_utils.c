@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:12:51 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/10 09:04:06 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 09:25:55 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	valid_path(char *arg)
 {
 	int	fd;
 
-	if (!is_file_valid(arg, EXT_XPM) != EXT_XPM)
+	if (is_file_valid(arg, EXT_XPM) != EXT_XPM)
 		return (false);
 	fd = open(arg, O_RDONLY);
 	if (fd > 0)
@@ -24,17 +24,17 @@ bool	valid_path(char *arg)
 	return (false);
 }
 
-char *skip_identifier(char *line)
+char *skip_identifier(t_game *game, char *line)
 {
     int i = 0;
 
     while (line[i] == ' ' || line[i] == '\t')
         i++;
-    if (line[i] != 'F' || line[i] != 'C')
-        error("Invalid identifier");
+    if (line[i] != 'F' && line[i] != 'C')
+        ft_error(game, ERR_MAP_CHARS);
     i++;
     if (line[i] != ' ' && line[i] != '\t')
-        error("Invalid format after identifier");
+        ft_error(game, ERR_MAP_CHARS);
     while (line[i] == ' ' || line[i] == '\t')
         i++;
     return (&line[i]);
@@ -50,17 +50,17 @@ int    count_tab(char **tab)
     return (i);    
 }
 
-bool check_rgb_value(char *rgb)
+int check_rgb_value(char *rgb)
 {
     char *trimmed;
     int value;
 
     trimmed = ft_strtrim(rgb, " \t\n");
-    if (!ft_isdigit(trimmed))
-        return (-1, error("RGB not numeric"));
+    if (!is_numeric_string(trimmed))
+        return (free(trimmed), -1);
     value = ft_atoi(trimmed);
     if (value < 0 || value > 255)
-        error("RGB out of range");
+        return (free(trimmed), -1);
     free(trimmed);
     return (value);
 }

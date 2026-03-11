@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:57:21 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/06 12:27:42 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 08:51:08 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ static bool check_color(t_game *game, t_color *color)
     char **rgb;
     char *values;
 
-    values = skip_identifier(color->line);
+    values = skip_identifier(game, color->line);
     rgb = ft_split(values, ',');
     if (!rgb || count_tab(rgb) != 3)
-        error("Invalid RGB format");
+    {
+        if (rgb)
+            free_tab(rgb);
+        return (ft_error(game, ERR_COLOR_FORMAT), false);
+    }
     color->r = check_rgb_value(rgb[0]);
     color->g = check_rgb_value(rgb[1]);
     color->b = check_rgb_value(rgb[2]);
-    if (color->r > 0 && color->g > 0 && color->b > 0)
-        return (true, free_tab(rgb));
-    return (free_tab(rgb), false);
+    if (color->r >= 0 && color->g >= 0 && color->b >= 0)
+        return (free_tab(rgb), true);
+    free_tab(rgb);
+    ft_error(game, ERR_COLOR_RANGE);
+    return (false);
 }
 
 static bool check_path(t_game *game)

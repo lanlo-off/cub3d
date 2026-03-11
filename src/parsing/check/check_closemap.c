@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/10 12:07:12 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 08:49:20 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ bool check_map_closed(t_map *map)
     p_y = map->p_pos[1];
 	copy = copy_map(map->grid, map->end - map->start);
 	if (flood_fill(copy, p_x, p_y) == false)
-		return (false, free_tab(copy));
+		return (free_tab(copy), false);
     while (find_zero(copy, &x, &y))
 	{
 		if (flood_fill(copy, x, y) == false)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/09 14:48:12 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/10 15:49:19 by maxime.m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ typedef enum e_extension
     EXT_CUB = 0,
     EXT_XPM = 1
 }   t_extension;
+
+typedef enum e_err_code
+{
+    ERR_ARG,
+    ERR_FILE_EXT,
+    ERR_FILE_OPEN,
+    ERR_MALLOC,
+    ERR_MAP_EMPTY,
+    ERR_MAP_UNCLOSED,
+    ERR_MAP_CHARS,
+    ERR_TEX_DUP,
+    ERR_TEX_MISSING,
+    ERR_COLOR_FORMAT,
+    ERR_COLOR_RANGE
+}   t_err_code;
 
 typedef struct s_mlx
 {

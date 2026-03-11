@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:28:38 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/10 08:55:35 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 08:50:08 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ bool    check_player_pos(t_map *map)
 {
     int x;
     int y;
-
+    
+    x = 0;
+    y = 0;
     map->p_pos = malloc(sizeof(int) * 2);
 	if (!map->p_pos)
 		return (false);

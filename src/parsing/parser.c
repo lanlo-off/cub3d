@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 12:00:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/10 12:08:10 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/11 09:31:20 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@ bool	read_map(t_game *game)
 	int		fd;
 
 	fd = open(game->map_path, O_RDONLY);
-	if (fd < 0) //err ouverture
-		return (false, ft_error(game));
+	if (fd < 0)
+		return (ft_error(game, ERR_FILE_OPEN), false);
 	close(fd);
     return (true);
 }
 
 bool    parser(t_game *game)
 {
+    if (is_file_valid(game->map_path, EXT_CUB) != EXT_CUB)
+        ft_error(game, ERR_FILE_EXT);
     if (!read_map(game))
         return (false);
     if (!findmap_elements(game))
-        return (false);
+        ft_error(game, ERR_MAP_CHARS);
     if (!is_last(game))
-        return (false);
+        ft_error(game, ERR_MAP_CHARS);
     if (!check_texture(game))
-        return (false);
+        ft_error(game, ERR_COLOR_FORMAT);
     if (!check_map_closed(game->map))
-        return (false);
+        ft_error(game, ERR_MAP_UNCLOSED);
     return (true);
 }
