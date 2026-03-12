@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 18:51:03 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/12 20:42:40 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char **copy_map(char **map, int height)
 	char **copy;
 	int i;
 
-	copy = malloc(sizeof(char *) * (height + 1));
+	copy = malloc(sizeof(char *) * (height + 2));
 	i = 0;
 	while (i <= height)
 	{

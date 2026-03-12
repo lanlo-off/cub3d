@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 12:00:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 14:48:43 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 20:48:15 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ bool    parser(t_game *game)
     if (!check_map_closed(game->map))
         ft_error(game, ERR_MAP_UNCLOSED);
     printf("::map closed ?\n");
+    game->map->height = game->map->end - game->map->start + 1;
+    game->map->width = game->map->max;
     return (true);
 }

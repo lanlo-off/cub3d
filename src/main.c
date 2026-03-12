@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:41:18 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 15:17:44 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 20:42:07 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int	main(int ac, char **av)
 		return (1);
 	printf(":parser OK\n");
 	print_map(game->map->grid); //debug only
+	printf("DEBUG: map->grid = %p, width = %d, height = %d\n", 
+		game->map->grid, game->map->width, game->map->height);
+	if (game->map->grid && game->map->grid[0])
+		printf("DEBUG: first line = '%s'\n", game->map->grid[0]);
 	init_game(game);
 	mlx_loop(game->mlx->mlx_ptr);
 	return (0);

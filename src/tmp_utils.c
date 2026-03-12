@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 19:19:32 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/12 20:51:03 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,39 +142,39 @@ bool	load_textures(t_game *g)
 	// load_tex(g->mlx, g->tex_SO, "./textures/iron.xpm");
 	// load_tex(g->mlx, g->tex_WE, "./textures/stone.xpm");
 	// load_tex(g->mlx, g->tex_EA, "./textures/wood.xpm");
-	load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
-	load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
-	load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
-	load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
-	// load_tex(g->mlx, g->tex_NO, g->tex_NO->path);
-	// load_tex(g->mlx, g->tex_SO, g->tex_SO->path);
-	// load_tex(g->mlx, g->tex_WE, g->tex_WE->path);
-	// load_tex(g->mlx, g->tex_EA, g->tex_EA->path);
+	// load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
+	// load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
+	// load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
+	// load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
+	load_tex(g->mlx, g->tex_NO, g->tex_NO->path);
+	load_tex(g->mlx, g->tex_SO, g->tex_SO->path);
+	load_tex(g->mlx, g->tex_WE, g->tex_WE->path);
+	load_tex(g->mlx, g->tex_EA, g->tex_EA->path);
 	return (true);
 }
 
-bool	set_floor_ceiling_color(t_game *g)
-{
-	g->c_color = ft_calloc(1, sizeof(t_color));
-	if (!g->c_color)
-		return (false);
-	g->f_color = ft_calloc(1, sizeof(t_color));
-	if (!g->c_color)
-    {
-        free(g->c_color);
-		return (false);
-    }
-	// g->f_color->r = 139;
-	// g->f_color->g = 69;
-	// g->f_color->b = 19;
-	g->f_color->r = 255;
-	g->f_color->g = 20;
-	g->f_color->b = 147;
-	g->c_color->r = 135;
-	g->c_color->g = 206;
-	g->c_color->b = 235;
-	return (true);
-}
+// bool	set_floor_ceiling_color(t_game *g)
+// {
+// 	g->c_color = ft_calloc(1, sizeof(t_color));
+// 	if (!g->c_color)
+// 		return (false);
+// 	g->f_color = ft_calloc(1, sizeof(t_color));
+// 	if (!g->c_color)
+//     {
+//         free(g->c_color);
+// 		return (false);
+//     }
+// 	// g->f_color->r = 139;
+// 	// g->f_color->g = 69;
+// 	// g->f_color->b = 19;
+// 	g->f_color->r = 255;
+// 	g->f_color->g = 20;
+// 	g->f_color->b = 147;
+// 	g->c_color->r = 135;
+// 	g->c_color->g = 206;
+// 	g->c_color->b = 235;
+// 	return (true);
+// }
 
 void set_color(t_color *color, char *name)
 {

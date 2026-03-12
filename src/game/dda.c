@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:20:14 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 13:39:19 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/12 20:18:26 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static void	advance_to_wall(t_ray *ray, t_map *map)
 		&& ray->map_y >= 0 && ray->map_y <= map->height
 		&& map->grid[ray->map_y][ray->map_x] != '1')//garanti que ca arrive
 	{
+		// DEBUG: Ajout de vérifications pour éviter la corruption
+		if (!map->grid || !map->grid[ray->map_y])
+		{
+			printf("ERROR: map->grid corruption at y=%d\n", ray->map_y);
+			break;
+		}
 		if (ray->side_dist_x < ray->side_dist_y)//on tapera une frontiere verticale en premier (on change de case horizontalement)
 		{
 			ray->side_dist_x += ray->delta_dist_x;//on remplace pas la valeur on "supprime la frontiere" pour ajouter la distance d'une case entiere comme etant la distance pour aller a la frontiere suivante
