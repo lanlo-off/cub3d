@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:48:30 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 10:37:23 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 18:59:01 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ bool	init_map(t_game *g)
 		return (false);
 	g->map->start = -1;
 	g->map->end = -1;
+	g->map->p_flag = 0;
 	return (true);
 }
 

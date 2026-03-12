@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/10 16:07:33 by maxime.m         ###   ########.fr       */
+/*   Updated: 2026/03/12 17:10:32 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@ void	free_mlx(t_mlx *mlx)
 
 void	free_tab(char **tab)
 {
-    int i;
+	int i;
 
-    i = 0;
-    if (!tab)
-        return ;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 void	free_map(t_map *map)
 {
 	if (!map)
 		return ;
-    if (map->raw)
-        free_tab(map->raw);
-    if (map->grid)
-        free_tab(map->grid);
-    if (map->p_pos)
-        free(map->p_pos);
+	if (map->raw)
+		free_tab(map->raw);
+	if (map->grid)
+		free_tab(map->grid);
+	if (map->p_pos)
+		free(map->p_pos);
 	free(map);
 }
 
@@ -61,8 +61,8 @@ void	free_tex(t_game *g, t_tex *texture)
 		return ;
 	if (g && g->mlx && texture->img)
 		mlx_destroy_image(g->mlx->mlx_ptr, texture->img);
-    if (texture->path)
-        free(texture->path);
+	if (texture->path)
+		free(texture->path);
 	free(texture);
 }
 
@@ -76,7 +76,7 @@ void	free_tex(t_game *g, t_tex *texture)
  */
 int	exit_game(t_game *game)
 {
-    free_game(game);
+	free_game(game);
 	exit(EXIT_SUCCESS);
 }
 
@@ -84,20 +84,20 @@ void free_game(t_game *game)
 {
 	if (!game)
 		return ;
-    //if (game->map_path)
-       // free(game->map_path);
+	//if (game->map_path)
+	   // free(game->map_path);
 	if (game->c_color)
-    {
-        if (game->c_color->line)
-            free(game->c_color->line);
+	{
+		if (game->c_color->line)
+			free(game->c_color->line);
 		free(game->c_color);
-    }
+	}
 	if (game->f_color)
-    {
-        if (game->f_color->line)
-            free(game->f_color->line);
+	{
+		if (game->f_color->line)
+			free(game->f_color->line);
 		free(game->f_color);
-    }
+	}
 	if (game->img)
 		free_img(game, game->img);
 	if (game->map)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_closemap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 15:55:56 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 18:51:03 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char **copy_map(char **map, int height)
 
 	copy = malloc(sizeof(char *) * (height + 1));
 	i = 0;
-	while (i < height)
+	while (i <= height)
 	{
 		copy[i] = ft_strdup(map[i]);
 		i++;
@@ -85,6 +85,8 @@ bool check_map_closed(t_map *map)
     p_x = map->p_pos[0];
     p_y = map->p_pos[1];
 	copy = copy_map(map->grid, map->end - map->start);
+	print_map(map->grid); //debug only
+	print_map(copy); //debug only
 	if (flood_fill(copy, p_x, p_y) == false)
 		return (free_tab(copy), false);
     while (find_zero(copy, &x, &y))

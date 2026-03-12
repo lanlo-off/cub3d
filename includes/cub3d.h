@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 17:05:00 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 19:21:02 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define MSG_ERR_TEX_MISSING "Missing or invalid texture path"
 # define MSG_ERR_COLOR_FORMAT "Invalid RGB format"
 # define MSG_ERR_COLOR_RANGE "RGB values must be between 0 and 255"
+# define MSG_ERR_PLAYER_NUMBER "Wrong number of player in the map"
 
 /*#############   FREE & UTILS   ###########*/
 /*free.c*/

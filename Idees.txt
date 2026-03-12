@@ -7,6 +7,12 @@ Parser
 	- game->floor_color --> remplir la struct en rgb
 	- game->ceiling_color --> remplir la struct en rgb
 
+Lancelot
+- Refaire les error_init dans init_game en rajoutant ce qui est fait dans le parser donc
+	- t_map et ce qu'il y a dedans (raw et grid)
+	- les textures et le path
+	- les couleurs et la line
+
 Exemple de transformation de map qui permet de la traiter plus facilement sans modifier sa jouabilite
 
         1111111111111111111111111

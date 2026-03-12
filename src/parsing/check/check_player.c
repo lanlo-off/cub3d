@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:28:38 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/11 08:50:08 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 18:58:19 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ bool    check_player_pos(t_map *map)
             {
                 map->p_pos[0] = x;
                 map->p_pos[1] = y;
-                return (true);
+                map->p_flag++;
             }
             x++;
         }
         y++;
     }
-    return (false);
+    return (map->p_flag == 1);
 }

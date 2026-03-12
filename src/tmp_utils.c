@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:51:26 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/10 16:25:23 by maxime.m         ###   ########.fr       */
+/*   Updated: 2026/03/12 19:19:32 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	print_map(char **grid)
 	i = 0;
 	while (grid[i])
 	{
-		printf("%s\n", grid[i]);
+		printf("%d -> %s\n",i , grid[i]);
 		i++;
 	}
 	printf("map finie\n\n");
@@ -138,10 +138,18 @@ bool	load_textures(t_game *g)
 	// printf("mlx [%p] | tex_NO [%p] | tex_SO [%p] | tex_WE [%p] | tex_EA [%p]\n", g->mlx, g->tex_NO, g->tex_SO, g->tex_WE, g->tex_EA);
 	if (!g->mlx || !g->tex_NO || !g->tex_SO || !g->tex_WE || !g->tex_EA)
 		return (false);
-	load_tex(g->mlx, g->tex_NO, "./textures/brick.xpm");
-	load_tex(g->mlx, g->tex_SO, "./textures/iron.xpm");
-	load_tex(g->mlx, g->tex_WE, "./textures/stone.xpm");
-	load_tex(g->mlx, g->tex_EA, "./textures/wood.xpm");
+	// load_tex(g->mlx, g->tex_NO, "./textures/brick.xpm");
+	// load_tex(g->mlx, g->tex_SO, "./textures/iron.xpm");
+	// load_tex(g->mlx, g->tex_WE, "./textures/stone.xpm");
+	// load_tex(g->mlx, g->tex_EA, "./textures/wood.xpm");
+	load_tex(g->mlx, g->tex_NO, "./textures/wall_NO.xpm");
+	load_tex(g->mlx, g->tex_SO, "./textures/wall_SO.xpm");
+	load_tex(g->mlx, g->tex_WE, "./textures/wall_WE.xpm");
+	load_tex(g->mlx, g->tex_EA, "./textures/wall_EA.xpm");
+	// load_tex(g->mlx, g->tex_NO, g->tex_NO->path);
+	// load_tex(g->mlx, g->tex_SO, g->tex_SO->path);
+	// load_tex(g->mlx, g->tex_WE, g->tex_WE->path);
+	// load_tex(g->mlx, g->tex_EA, g->tex_EA->path);
 	return (true);
 }
 

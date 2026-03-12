@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 14:40:09 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 19:03:22 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef enum e_err_code
     ERR_TEX_DUP,
     ERR_TEX_MISSING,
     ERR_COLOR_FORMAT,
-    ERR_COLOR_RANGE
+    ERR_COLOR_RANGE,
+    ERR_PLAYER_NUMBER
 }   t_err_code;
 
 typedef struct s_mlx
@@ -71,6 +72,7 @@ typedef struct s_map
 	int		height;
 	int		max;
 	int		*p_pos;
+	int		p_flag;
 }	t_map;
 
 /**

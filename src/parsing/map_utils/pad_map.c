@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pad_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:13:24 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/11 09:30:14 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 18:50:24 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ char	**mallocfile(t_game *g)
 {
 	char	**res;
 	int	    i;
-    int     height;
+	int     height;
 
-    height = g->map->end - g->map->start;
+	height = g->map->end - g->map->start + 1;
 	res = malloc(sizeof(char *) * (height + 1));
 	if (!res)
 			ft_error(g, ERR_MALLOC);
@@ -34,7 +34,7 @@ char	**mallocfile(t_game *g)
 		}
 		i++;
 	}
-    res[i] = NULL;
+	res[i] = NULL;
 	return (res);
 }
 
@@ -44,13 +44,13 @@ void	pad_line(char *mapped_line, char *raw_line, int max_len)
 
 	i = 0;
 	while (raw_line && raw_line[i] && raw_line[i] != '\n' && i < max_len)
-    {
-        if (raw_line[i] == ' ')
-		    mapped_line[i] = 'a';
-        else
-            mapped_line[i] = raw_line[i];
-        i++;
-    }
+	{
+		if (raw_line[i] == ' ')
+			mapped_line[i] = 'a';
+		else
+			mapped_line[i] = raw_line[i];
+		i++;
+	}
 	while (i < max_len)
 		mapped_line[i++] = 'a';
 	mapped_line[i] = '\0';
@@ -58,19 +58,19 @@ void	pad_line(char *mapped_line, char *raw_line, int max_len)
 
 bool    fill_grid(t_game *g)
 {
-    int i;
-    int raw_i;
+	int i;
+	int raw_i;
 
-    g->map->grid = mallocfile(g);
+	g->map->grid = mallocfile(g);
 	if (!g->map->grid)
 		return (false);
-    i = 0;
-    raw_i = g->map->start;
-    while (i < (g->map->end - g->map->start))
-    {
-        pad_line(g->map->grid[i], g->map->raw[raw_i], g->map->max);
-        i++;
-        raw_i++;
-    }
-    return (true);
+	i = 0;
+	raw_i = g->map->start;
+	while (i < g->map->end - g->map->start + 1)
+	{
+		pad_line(g->map->grid[i], g->map->raw[raw_i], g->map->max);
+		i++;
+		raw_i++;
+	}
+	return (true);
 }

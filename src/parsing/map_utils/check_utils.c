@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:12:51 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/11 09:25:55 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 18:23:19 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,55 @@ bool	valid_path(char *arg)
 
 char *skip_identifier(t_game *game, char *line)
 {
-    int i = 0;
+	int i = 0;
 
-    while (line[i] == ' ' || line[i] == '\t')
-        i++;
-    if (line[i] != 'F' && line[i] != 'C')
-        ft_error(game, ERR_MAP_CHARS);
-    i++;
-    if (line[i] != ' ' && line[i] != '\t')
-        ft_error(game, ERR_MAP_CHARS);
-    while (line[i] == ' ' || line[i] == '\t')
-        i++;
-    return (&line[i]);
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] != 'F' && line[i] != 'C')
+		ft_error(game, ERR_MAP_CHARS);
+	i++;
+	if (line[i] != ' ' && line[i] != '\t')
+		ft_error(game, ERR_MAP_CHARS);
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	return (&line[i]);
 }
 
 int    count_tab(char **tab)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (tab[i] != NULL)
-        i++;
-    return (i);    
+	i = 0;
+	while (tab[i] != NULL)
+		i++;
+	return (i);    
 }
 
 int check_rgb_value(char *rgb)
 {
-    char *trimmed;
-    int value;
+	char *trimmed;
+	int value;
 
-    trimmed = ft_strtrim(rgb, " \t\n");
-    if (!is_numeric_string(trimmed))
-        return (free(trimmed), -1);
-    value = ft_atoi(trimmed);
-    if (value < 0 || value > 255)
-        return (free(trimmed), -1);
-    free(trimmed);
-    return (value);
+	trimmed = ft_strtrim(rgb, " \t\n");
+	if (!is_numeric_string(trimmed))
+		return (free(trimmed), -1);
+	value = ft_atoi(trimmed);
+	if (value < 0 || value > 255)
+		return (free(trimmed), -1);
+	free(trimmed);
+	return (value);
 }
 
 bool    is_last(t_game *game)
 {
-    int i;
+	int i;
 
-    i = game->map->end;
-    while (game->map->raw[i])
-    {
-        if (!empty_line(game->map->raw[i]))
-            return (false);
-        i++;
-    }
-    return (true);
+	i = game->map->end + 1;
+	while (game->map->raw[i])
+	{
+		if (!empty_line(game->map->raw[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
