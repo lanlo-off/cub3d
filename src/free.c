@@ -84,8 +84,8 @@ void free_game(t_game *game)
 {
 	if (!game)
 		return ;
-    if (game->map_path)
-        free(game->map_path);
+    //if (game->map_path)
+       // free(game->map_path);
 	if (game->c_color)
     {
         if (game->c_color->line)

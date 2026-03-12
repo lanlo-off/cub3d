@@ -24,6 +24,7 @@ bool    check_player_pos(t_map *map)
 		return (false);
     while (map->grid[y])
     {
+        x = 0;
         while (map->grid[y][x])
         {
             if (ft_strchr("NSWE", map->grid[y][x]))

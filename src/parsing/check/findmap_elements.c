@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:50:12 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/11 09:20:10 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:49:46 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static bool find_tex2(t_game *g, char *line)
 {
     if (ft_strncmp(line, "WE ", 3) == 0)
     {
-        g->tex_WE->path = ft_strdup(skip_spaces(line + 3));
+        g->tex_WE->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
         g->tex_WE->flag++;
     }
     else if (ft_strncmp(line, "EA ", 3) == 0)
     {
-        g->tex_EA->path = ft_strdup(skip_spaces(line + 3));
+        g->tex_EA->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
         g->tex_EA->flag++;
     }
     return (true);
@@ -39,12 +39,12 @@ static bool find_tex(t_game *g)
         i++;
         if (ft_strncmp(line, "NO ", 3) == 0)
         {
-            g->tex_NO->path = ft_strdup(skip_spaces(line + 3));
+            g->tex_NO->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
             g->tex_NO->flag++;
         }
         else if (ft_strncmp(line, "SO ", 3) == 0)
         {
-            g->tex_SO->path = ft_strdup(skip_spaces(line + 3));
+            g->tex_SO->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
             g->tex_SO->flag++;            
         }
         else if (!find_tex2(g, line))
@@ -71,12 +71,12 @@ static bool find_color(t_game *g)
         line = skip_spaces(g->map->raw[i++]);
         if (ft_strncmp(line, "F ", 2) == 0)
         {
-            g->f_color->line = ft_strdup(skip_spaces(line + 2));
+            g->f_color->line = ft_strtrim(skip_spaces(line + 2), " \t\n");
             g->f_color->flag++;
         }
         else if (ft_strncmp(line, "C ", 2) == 0)
         {
-            g->c_color->line = ft_strdup(skip_spaces(line + 2));
+            g->c_color->line = ft_strtrim(skip_spaces(line + 2), " \t\n");
             g->c_color->flag++;
         }
     }
@@ -117,13 +117,21 @@ bool    findmap_elements(t_game *game)
 {
     if (!fill_raw(game))
         return (false);
+    printf(":::fillraw\n");
     if (!find_tex(game))
         return (false);
+    printf(":::findtex\n");
     if (!find_color(game))
         return (false);
+    printf(":::findcolor\n");
     if (!find_map(game))
         return (false);
+    printf(":::findmap\n");
+    if (!fill_grid(game))
+        return (false);
+    printf(":::fillgrid\n");
     if (!check_player_pos(game->map))
         return (false);
+    printf(":::playerpos\n");
     return (true);
 }

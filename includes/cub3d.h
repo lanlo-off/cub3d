@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/11 09:24:46 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:56:37 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ bool	init_game(t_game *game);
 
 /*init_utils.c*/
 bool	init_textures(t_game *g);
+bool	init_map(t_game *g);
 bool	get_player_start(char **map, t_player *player);
 
 /*error_init.c*/
@@ -124,6 +125,7 @@ bool    empty_line(char *str);
 int	    count_raw(t_game *game, char *map_path);
 int     valid_line(char *tofind, char *line);
 bool    fill_raw(t_game *game);
+bool    fill_grid(t_game *game);
 bool    is_last(t_game *game);
 bool    check_player_pos(t_map *map);
 bool    check_map_closed(t_map *map);

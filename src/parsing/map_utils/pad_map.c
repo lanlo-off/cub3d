@@ -43,7 +43,7 @@ void	pad_line(char *mapped_line, char *raw_line, int max_len)
 	int		i;
 
 	i = 0;
-	while (raw_line && raw_line[i] && i < max_len)
+	while (raw_line && raw_line[i] && raw_line[i] != '\n' && i < max_len)
     {
         if (raw_line[i] == ' ')
 		    mapped_line[i] = 'a';

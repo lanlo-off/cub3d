@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:41:18 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/10 16:27:23 by maxime.m         ###   ########.fr       */
+/*   Updated: 2026/03/12 15:17:44 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ int	main(int ac, char **av)
 		return(printf("Wrong number of arguments : ./cub3d map.cub\n"), 1);
 	if (is_file_valid(av[1], EXT_CUB) != EXT_CUB)
 		return (1);
+	printf(":Bon nb args et bon fichier\n");
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (1);
 	game->map_path = av[1];
 	if (!init_struct(game))
 		return (1);
+	printf(":intistruct\n");
 	if (!parser(game))
 		return (1);
-	// print_map(map->grid); //debug only
+	printf(":parser OK\n");
+	print_map(game->map->grid); //debug only
 	init_game(game);
 	mlx_loop(game->mlx->mlx_ptr);
 	return (0);

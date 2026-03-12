@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime.m <maxime.m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/10 15:49:19 by maxime.m         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:40:09 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef enum e_extension
 {
 	EXT_UNKNOWN = -1,
 	EXT_ISDIR = 0,
-    EXT_CUB = 0,
-    EXT_XPM = 1
+    EXT_CUB = 1,
+    EXT_XPM = 2
 }   t_extension;
 
 typedef enum e_err_code

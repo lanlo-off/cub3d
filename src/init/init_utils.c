@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:48:30 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/05 18:28:24 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 10:37:23 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ bool	init_textures(t_game *g)
 	g->tex_EA = ft_calloc(1, sizeof(t_tex));
 	if (!g->tex_EA)
 		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), false);
+	g->f_color = ft_calloc(1, sizeof(t_color));
+	if (!g->f_color)
+		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), \
+			free(g->tex_EA), false);
+	g->c_color = ft_calloc(1, sizeof(t_color));
+	if (!g->c_color)
+		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), \
+			free(g->tex_EA), free(g->f_color), false);
+	return (true);
+}
+
+bool	init_map(t_game *g)
+{
+	g->map = ft_calloc(1, sizeof(t_map));
+	if (!g->map)
+		return (false);
+	g->map->start = -1;
+	g->map->end = -1;
 	return (true);
 }
 

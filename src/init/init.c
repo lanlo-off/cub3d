@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:48:15 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/05 18:22:09 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 16:58:22 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ bool	init_struct(t_game *g)
 	g->key = ft_calloc(1, sizeof(t_key));
 	if (!g->key)
 		return (free(g), false);
-	if (!init_textures(g))
+	printf("::init key\n");
+	if (!init_map(g))
 		return (free(g->key), free(g), false);
-	// init couleur
-	// init map ?
+	printf("::init map\n");
+	if (!init_textures(g)) //dans init_texture il y a aussi els couleurs
+		return (free(g->key), free(g->map), free(g), false);
+	printf("::init text + color\n");
 	return (true);
 }
 
@@ -89,9 +92,14 @@ static bool	init_struct_mlx(t_game* game, t_mlx *mlx)
 bool	init_game(t_game *game)
 {
 	game->tile_size = TILE_SIZE;
+	printf("::init game\n");
 	init_struct_mlx(game, game->mlx);
+	printf("::init mlx\n");
 	init_struct_img(game, game->img);
+	printf("::init img\n");
 	init_struct_player(game, game->player);
+	printf("::init player\n");
 	load_textures(game);
+	printf("::load textures\n");
 	return (true);
 }

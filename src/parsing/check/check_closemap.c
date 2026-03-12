@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/11 08:49:20 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 15:55:56 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ bool check_map_closed(t_map *map)
 		if (flood_fill(copy, x, y) == false)
 			return (false);
 	}
+	print_map(copy);
 	free_tab(copy);
 	return (true);
 }
