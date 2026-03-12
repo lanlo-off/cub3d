@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:48:15 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 16:58:22 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 19:51:01 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static bool	init_struct_player(t_game *game, t_player *player)
 		error_init_player(game, player);
 	if (!get_player_start(game->map->grid, game->player))
 		error_init_player(game, player);
+	// player->x = 10.5;
+	// player->y = 10.5;
 	return (true);
 }
 

@@ -25,7 +25,6 @@ get_xlib_include_path(){
 
 	for inc in \
 		/usr/X11/include          \
-		/opt/X11/include          \
 		/usr/X11R6/include        \
 		/usr/X11R5/include        \
 		/usr/X11R4/include        \
