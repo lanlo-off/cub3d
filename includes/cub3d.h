@@ -6,7 +6,7 @@
 /*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 14:56:37 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/12 17:05:00 by mmiotla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <math.h>
 # include <stdlib.h>
 # include "../mlx/mlx.h"
-//# include <X11/X.h>
-//# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "../libft/libft.h"
 
 # include <fcntl.h>
@@ -39,9 +39,7 @@
 # define ROT_SPEED 0.01//en faisant WIN_WINDTH / 100000 on a un truc correct
 # define MOV_SPEED 0.01//a voir
 # define EPSILON 1e-5//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
-#ifndef M_PI
 # define M_PI 3.14159265358979323846
-#endif
 # define MSG_ERR_ARG "Invalid number of arguments"
 # define MSG_ERR_FILE_EXT "Wrong file extension (must be .cub)"
 # define MSG_ERR_FILE_OPEN "Could not open file or FD invalid"
