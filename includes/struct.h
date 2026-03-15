@@ -32,9 +32,11 @@ typedef enum e_err_code
     ERR_MAP_EMPTY,
     ERR_MAP_UNCLOSED,
     ERR_MAP_CHARS,
-    ERR_TEX_DUP,
-    ERR_TEX_MISSING,
-    ERR_COLOR_FORMAT,
+	ERR_MAP_FIND,
+	ERR_MAP_LAST,
+    ERR_TEX_NUMBER,
+    ERR_TEX_PATH,
+    ERR_COLOR_NUMBER,
     ERR_COLOR_RANGE,
     ERR_PLAYER_NUMBER
 }   t_err_code;

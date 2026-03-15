@@ -24,7 +24,7 @@ bool	valid_path(char *arg)
 	return (false);
 }
 
-char *skip_identifier(t_game *game, char *line)
+char	*skip_identifier(t_game *game, char *line)
 {
 	int i = 0;
 
@@ -40,14 +40,14 @@ char *skip_identifier(t_game *game, char *line)
 	return (&line[i]);
 }
 
-int    count_tab(char **tab)
+int		count_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i] != NULL)
 		i++;
-	return (i);    
+	return (i);
 }
 
 int check_rgb_value(char *rgb)
@@ -65,7 +65,7 @@ int check_rgb_value(char *rgb)
 	return (value);
 }
 
-bool    is_last(t_game *game)
+bool	is_last(t_game *game)
 {
 	int i;
 

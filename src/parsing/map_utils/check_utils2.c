@@ -12,14 +12,14 @@
 
 #include "../../../includes/cub3d.h"
 
-char *skip_spaces(char *line)
+char	*skip_spaces(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
 	return line;
 }
 
-bool    empty_line(char *str)
+bool	empty_line(char *str)
 {
 	char *trimmed;
 	
@@ -27,10 +27,10 @@ bool    empty_line(char *str)
 	return (*trimmed == '\0' || *trimmed == '\n');
 }
 
-int valid_line(char *tofind, char *line)
+int		valid_line(char *tofind, char *line)
 {
 	// printf("::::validline\n");
-	int i;
+	int	i;
 	
 	i = 0;
 	if (!line|| !line[0] || line[0] == '\n')
@@ -44,7 +44,7 @@ int valid_line(char *tofind, char *line)
 	return (1);
 }
 
-bool is_numeric_string(char *str)
+bool	is_numeric_string(char *str)
 {
 	int i = 0;
 	

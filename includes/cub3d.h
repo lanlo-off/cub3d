@@ -28,6 +28,12 @@
 # include <stdio.h>
 # include <string.h>
 
+#include <fcntl.h>
+
+#ifndef O_DIRECTORY
+# define O_DIRECTORY 0
+#endif
+
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 450
 # define TILE_SIZE 64
@@ -47,10 +53,12 @@
 # define MSG_ERR_MAP_EMPTY "Map is empty or totally invalid"
 # define MSG_ERR_MAP_UNCLOSED "Map is not fully enclosed by walls"
 # define MSG_ERR_MAP_CHARS "Invalid characters found in map"
-# define MSG_ERR_TEX_DUP "Duplicate texture or color identifier"
-# define MSG_ERR_TEX_MISSING "Missing or invalid texture path"
-# define MSG_ERR_COLOR_FORMAT "Invalid RGB format"
-# define MSG_ERR_COLOR_RANGE "RGB values must be between 0 and 255"
+# define MSG_ERR_MAP_FIND "Could not find map in the file"
+# define MSG_ERR_MAP_LAST "The map is not last"
+# define MSG_ERR_TEX_NUMBER "Number of textures invalid must equal to 1"
+# define MSG_ERR_TEX_PATH "Texture path is not valid"
+# define MSG_ERR_COLOR_NUMBER "Number of colors invalid must equal to 1"
+# define MSG_ERR_COLOR_RANGE "RGB values must be equal between 0 and 255"
 # define MSG_ERR_PLAYER_NUMBER "Wrong number of player in the map"
 
 /*#############   FREE & UTILS   ###########*/
@@ -132,6 +140,7 @@ bool    parser(t_game *game);
 int     count_tab(char **tab);
 int     check_rgb_value(char *rgb);
 bool    is_numeric_string(char *str);
+bool	find_map(t_game *g);
 
 /*#############   ERRORS SYSTEM   ###########*/
 void    ft_error(t_game *game, t_err_code code);

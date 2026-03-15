@@ -21,6 +21,7 @@ SRCS +=	src/parsing/parser.c\
 	src/parsing/check/check_closemap.c\
 	src/parsing/check/check_player.c\
 	src/parsing/check/check_textures.c\
+	src/parsing/check/findmap.c\
 	src/parsing/check/findmap_elements.c \
 
 SRCS += src/minimap/minimap.c\

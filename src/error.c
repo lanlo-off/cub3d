@@ -22,20 +22,21 @@ void print_error(t_err_code code)
         MSG_ERR_MAP_EMPTY,
         MSG_ERR_MAP_UNCLOSED,
         MSG_ERR_MAP_CHARS,
-        MSG_ERR_TEX_DUP,
-        MSG_ERR_TEX_MISSING,
-        MSG_ERR_COLOR_FORMAT,
+		MSG_ERR_MAP_FIND,
+		MSG_ERR_MAP_LAST,
+        MSG_ERR_TEX_NUMBER,
+        MSG_ERR_TEX_PATH,
+        MSG_ERR_COLOR_NUMBER,
         MSG_ERR_COLOR_RANGE,
         MSG_ERR_PLAYER_NUMBER
     };
-
-    ft_putstr_fd("Error\n", 2);
-    ft_putendl_fd((char *)messages[code], 2);
+    (ft_putstr_fd("Error\n", 2), ft_putendl_fd((char *)messages[code], 2));
 }
 
 void	ft_error(t_game *game, t_err_code code)
 {
     print_error(code);
     free_game(game);
+	free(game);
     exit(EXIT_FAILURE);
 }

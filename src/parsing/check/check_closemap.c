@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_closemap.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 20:42:40 by llechert         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   check_closemap.c                                  :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: mmiotla <mmiotla@student.42.fr>           #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/03/09 11:57:39 by mmiotla          #+#    #+#              */
+/*   Updated: 2026/03/13 16:25:59 by mmiotla         ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-char **copy_map(char **map, int height)
+char	**copy_map(char **map, int height)
 {
-	char **copy;
-	int i;
+	char	**copy;
+	int		i;
 
 	copy = malloc(sizeof(char *) * (height + 2));
 	i = 0;
@@ -28,11 +28,11 @@ char **copy_map(char **map, int height)
 	return (copy);
 }
 
-bool flood_fill(char **map, int x, int y)
+bool flood_fill(char * *map, int x, int y)
 {
 	if (x < 0 || y < 0)
 		return (false);
-	if (!map[y] || x >= (int)ft_strlen(map[y]))
+	if (!map[y] || x >= (int) ft_strlen(map[y]))
 		return (false);
 	if (map[y][x] == ' ')
 		return (false);
@@ -50,10 +50,10 @@ bool flood_fill(char **map, int x, int y)
 	return (true);
 }
 
-int find_zero(char **map, int *x, int *y)
+int	find_zero(char **map, int *x, int *y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -76,25 +76,25 @@ int find_zero(char **map, int *x, int *y)
 
 bool check_map_closed(t_map *map)
 {
-	char **copy;
-    int x;
-	int y;
-    int p_x;
-    int p_y;
+	char	**copy;
+	int		x;
+	int		y;
+	int		p_x;
+	int		p_y;
 
-    p_x = map->p_pos[0];
-    p_y = map->p_pos[1];
+	p_x = map->p_pos[0];
+	p_y = map->p_pos[1];
 	copy = copy_map(map->grid, map->end - map->start);
-	print_map(map->grid); //debug only
-	print_map(copy); //debug only
+	// print_map(map->grid); //debug only
+	// print_map(copy); //debug only
 	if (flood_fill(copy, p_x, p_y) == false)
 		return (free_tab(copy), false);
-    while (find_zero(copy, &x, &y))
+	while (find_zero(copy, &x, &y))
 	{
 		if (flood_fill(copy, x, y) == false)
-			return (false);
+			return (free_tab(copy), false);
 	}
-	print_map(copy);
+	//print_map(copy);
 	free_tab(copy);
 	return (true);
 }

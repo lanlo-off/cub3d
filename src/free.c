@@ -117,3 +117,21 @@ void free_game(t_game *game)
 	if (game->key)
 		free(game->key);
 }
+
+// void	free_tex_path(t_game *g)
+// {
+// 	if (!g)
+// 		return ;
+// 	if (g->tex_NO->path)
+// 		free(g->tex_NO->path);
+// 	if (g->tex_SO->path)
+// 		free(g->tex_SO->path);
+// 	if (g->tex_WE->path)
+// 		free(g->tex_WE->path);
+// 	if (g->tex_EA->path)
+// 		free(g->tex_EA->path);
+// 	if (g->f_color->line)
+// 		free(g->f_color->line);
+// 	if (g->c_color->line)
+// 		free(g->c_color->line);	
+// }

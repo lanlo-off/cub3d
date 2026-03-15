@@ -36,33 +36,31 @@ int	count_raw(t_game *game, char *map_path)
 	return (line_count);
 }
 
-bool fill_raw(t_game *game)
+bool fill_raw(t_game *g)
 {
 	int     i;
 	int     fd;
 	char    *line;
 
 	i = 0;
-	fd = open(game->map_path, O_RDONLY);
+	fd = open(g->map_path, O_RDONLY);
 	if (fd < 0)
-		ft_error(game, ERR_FILE_OPEN);
-	game->map->raw = malloc(sizeof(char *) * (count_raw(game, game->map_path) + 1));
-	if (!game->map->raw)
-		return (ft_error(game, ERR_MALLOC), false);
+		ft_error(g, ERR_FILE_OPEN);
+	g->map->raw = malloc(sizeof(char *) * (count_raw(g, g->map_path) + 1));
+	if (!g->map->raw)
+		return (ft_error(g, ERR_MALLOC), false);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 		{
-			// i++;
 			get_next_line(-42);
 			break;
 		}
-		game->map->raw[i++] = line;
+		g->map->raw[i++] = line;
 	}
-	get_next_line(-42);
-	close(fd);
+	(get_next_line(-42), close(fd));
 	printf("Last pointer to NULL is -> %d\n", i);
-	game->map->raw[i] = NULL;
+	g->map->raw[i] = NULL;
 	return (true);
 }
