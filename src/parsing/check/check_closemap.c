@@ -34,7 +34,7 @@ bool flood_fill(char * *map, int x, int y)
 		return (false);
 	if (!map[y] || x >= (int) ft_strlen(map[y]))
 		return (false);
-	if (map[y][x] == ' ')
+	if (map[y][x] == ' ' || map[y][x] == 'a')
 		return (false);
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return (true);

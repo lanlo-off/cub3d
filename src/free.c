@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:11:42 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 17:10:32 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/16 18:19:38 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	free_tex(t_game *g, t_tex *texture)
 int	exit_game(t_game *game)
 {
 	free_game(game);
+	free(game);
 	exit(EXIT_SUCCESS);
 }
 

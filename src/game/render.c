@@ -62,9 +62,9 @@ static void	draw_wall(t_img *img, t_ray ray)
 	texture_x = (int)(wall_x * (double)(ray.wall_texture->width));
 
 	/*3- Ce bloc sert a eviter l'inversion de l'impression des textures*/
-	if (ray.frontier_type == VERTICAL && ray.dir_x > 0)
+	if (ray.frontier_type == VERTICAL && ray.dir_x < 0)
 		texture_x = ray.wall_texture->width - texture_x - 1;
-	if (ray.frontier_type == HORIZONTAL && ray.dir_y < 0)
+	if (ray.frontier_type == HORIZONTAL && ray.dir_y > 0)
 		texture_x = ray.wall_texture->width - texture_x - 1;
 
 	/*4- On demarre au plus grand entre wall_start et 0 pour eviter de boucler de -1000000 a 0 pour rien*/

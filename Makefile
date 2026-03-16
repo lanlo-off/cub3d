@@ -57,7 +57,7 @@ all: $(NAME)
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-$(NAME): $(LIBFT) $(OBJS) $(MLX)
+$(NAME): $(LIBFT) $(OBJS) $(MLX) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(MLX_FLAGS) $(LIBFT) -lm -o $(NAME)
 
 $(OBJS_DIR)/%.o: src/%.c $(HEADER) | $(OBJS_DIR)

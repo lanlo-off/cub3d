@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/12 19:21:02 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:14:18 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@
 # define MOV_SPEED 0.01//a voir
 # define EPSILON 1e-5//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
 # define M_PI 3.14159265358979323846
-# define MSG_ERR_ARG "Invalid number of arguments"
-# define MSG_ERR_FILE_EXT "Wrong file extension (must be .cub)"
-# define MSG_ERR_FILE_OPEN "Could not open file or FD invalid"
-# define MSG_ERR_MALLOC "Memory allocation failed"
-# define MSG_ERR_MAP_EMPTY "Map is empty or totally invalid"
-# define MSG_ERR_MAP_UNCLOSED "Map is not fully enclosed by walls"
-# define MSG_ERR_MAP_CHARS "Invalid characters found in map"
-# define MSG_ERR_MAP_FIND "Could not find map in the file"
-# define MSG_ERR_MAP_LAST "The map is not last"
-# define MSG_ERR_TEX_NUMBER "Number of textures invalid must equal to 1"
-# define MSG_ERR_TEX_PATH "Texture path is not valid"
-# define MSG_ERR_COLOR_NUMBER "Number of colors invalid must equal to 1"
-# define MSG_ERR_COLOR_RANGE "RGB values must be equal between 0 and 255"
-# define MSG_ERR_PLAYER_NUMBER "Wrong number of player in the map"
+# define MSG_ERR_ARG "Invalid number of arguments\n"
+# define MSG_ERR_FILE_EXT "Wrong file extension (must be .cub)\n"
+# define MSG_ERR_FILE_OPEN "Could not open file or FD invalid\n"
+# define MSG_ERR_MALLOC "Memory allocation failed\n"
+# define MSG_ERR_MAP_EMPTY "Map is empty or totally invalid\n"
+# define MSG_ERR_MAP_UNCLOSED "Map is not fully enclosed by walls\n"
+# define MSG_ERR_MAP_CHARS "Invalid characters found in map\n"
+# define MSG_ERR_MAP_FIND "Could not find map in the file\n"
+# define MSG_ERR_MAP_LAST "The map is not last\n"
+# define MSG_ERR_TEX_NUMBER "Number of textures invalid must equal to 1\n"
+# define MSG_ERR_TEX_PATH "Texture path is not valid\n"
+# define MSG_ERR_COLOR_NUMBER "Number of colors invalid must equal to 1\n"
+# define MSG_ERR_COLOR_RANGE "RGB values must be equal between 0 and 255\n"
+# define MSG_ERR_PLAYER_NUMBER "Wrong number of player in the map\n"
 
 /*#############   FREE & UTILS   ###########*/
 /*free.c*/

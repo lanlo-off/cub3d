@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   main.c                                            :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: mmiotla <mmiotla@student.42.fr>           #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2025/04/03 13:19:41 by mmiotla          #+#    #+#              */
-/*   Updated: 2026/03/15 18:52:39 by mmiotla         ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/03 13:19:41 by mmiotla           #+#    #+#             */
+/*   Updated: 2026/03/16 18:02:05 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	if (!parser(game))
 		return ( 1);
 	//printf(":parser OK\n");
-	// print_map(game->map->grid); //debug only
+	print_map(game->map->grid); //debug only
 	// printf("DEBUG: map->grid = %p, width = %d, height = %d\n",
 	// 	game->map->grid, game->map->width, game->map->height);
 	// if (game->map->grid && game->map->grid[0])
