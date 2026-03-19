@@ -59,7 +59,24 @@ bool	is_numeric_string(char *str)
 	return (true);
 }
 
-bool no_invalid_char_found(t_game *g)
+static bool	is_identifier_line(char *line)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (true);
+	if (ft_strncmp(line, "SO ", 3) == 0)
+		return (true);
+	if (ft_strncmp(line, "WE ", 3) == 0)
+		return (true);
+	if (ft_strncmp(line, "EA ", 3) == 0)
+		return (true);
+	if (ft_strncmp(line, "F ", 2) == 0)
+		return (true);
+	if (ft_strncmp(line, "C ", 2) == 0)
+		return (true);
+	return (false);
+}
+
+bool	no_invalid_char_found(t_game *g)
 {
 	int		i;
 	char	*line;
@@ -67,20 +84,14 @@ bool no_invalid_char_found(t_game *g)
 	i = 0;
 	while (g->map->raw[i])
 	{
-		while (g->map->raw[i] && empty_line(g->map->raw[i]))
-			i++;
-		if (!g->map->raw[i])
-			break ;
-		line = skip_spaces(g->map->raw[i++]);
-		if (ft_strncmp(line, "NO ", 3) != 0 || ft_strncmp(line, "SO ", 3)\
-			!= 0 || ft_strncmp(line, "WE ", 3) != 0 || ft_strncmp(line, \
-			"EA ", 3) != 0 || ft_strncmp(line, "F ", 2) != 0 || \
-			ft_strncmp(line, "C ", 2) != 0)
+		if (empty_line(g->map->raw[i]))
 		{
 			i++;
 			continue ;
 		}
-		if (!valid_line(" 01NSEW\n", g->map->raw[i]))
+		line = skip_spaces(g->map->raw[i]);
+		if (!is_identifier_line(line)
+			&& !valid_line(" \t01NSEW\n", g->map->raw[i]))
 			return (false);
 		i++;
 	}
