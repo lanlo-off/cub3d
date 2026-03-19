@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:13:24 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 20:43:41 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:06:00 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 char	**mallocfile(t_game *g)
 {
 	char	**res;
-	int	    i;
-	int     height;
+	int		i;
+	int		height;
 
 	height = g->map->end - g->map->start + 1;
 	res = malloc(sizeof(char *) * (height + 1));
 	if (!res)
-			ft_error(g, ERR_MALLOC);
+		ft_error(g, ERR_MALLOC);
 	i = 0;
 	while (i < height)
 	{
@@ -56,10 +56,10 @@ void	pad_line(char *mapped_line, char *raw_line, int max_len)
 	mapped_line[i] = '\0';
 }
 
-bool    fill_grid(t_game *g)
+bool	fill_grid(t_game *g)
 {
-	int i;
-	int raw_i;
+	int	i;
+	int	raw_i;
 
 	g->map->grid = mallocfile(g);
 	if (!g->map->grid)

@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:12:51 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 18:23:19 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:09:25 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ bool	valid_path(char *arg)
 
 char	*skip_identifier(t_game *game, char *line)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] != 'F' && line[i] != 'C')
@@ -40,7 +41,7 @@ char	*skip_identifier(t_game *game, char *line)
 	return (&line[i]);
 }
 
-int		count_tab(char **tab)
+int	count_tab(char **tab)
 {
 	int	i;
 
@@ -50,10 +51,10 @@ int		count_tab(char **tab)
 	return (i);
 }
 
-int check_rgb_value(char *rgb)
+int	check_rgb_value(char *rgb)
 {
-	char *trimmed;
-	int value;
+	char	*trimmed;
+	int		value;
 
 	trimmed = ft_strtrim(rgb, " \t\n");
 	if (!is_numeric_string(trimmed))
@@ -67,7 +68,7 @@ int check_rgb_value(char *rgb)
 
 bool	is_last(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = game->map->end + 1;
 	while (game->map->raw[i])

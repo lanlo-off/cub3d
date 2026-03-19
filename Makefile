@@ -1,5 +1,8 @@
 SRCS = src/main.c\
-	src/free.c
+	src/free.c\
+	src/free2.c\
+	src/error.c\
+	src/init_utils.c
 
 SRCS += src/init/init.c\
 	src/init/error_init.c\
@@ -22,16 +25,8 @@ SRCS +=	src/parsing/parser.c\
 	src/parsing/check/check_player.c\
 	src/parsing/check/check_textures.c\
 	src/parsing/check/findmap.c\
-	src/parsing/check/findmap_elements.c \
+	src/parsing/check/findmap_elements.c
 
-SRCS += src/minimap/minimap.c\
-	src/minimap/mm_ray.c\
-	src/minimap/mm_ray_utils.c
-
-SRCS += src/tmp_utils.c
-
-SRCS += src/error.c
-	
 OBJS_DIR = obj
 
 OBJS = $(SRCS:src/%/%.c=$(OBJS_DIR)/%.o)

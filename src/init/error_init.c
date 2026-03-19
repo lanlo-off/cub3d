@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiotla <mmiotla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 16:35:13 by llechert          #+#    #+#             */
-/*   Updated: 2026/02/24 15:42:35 by mmiotla          ###   ########.fr       */
+/*   Updated: 2026/03/19 15:13:55 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void	error_init_mlx(t_game *game)
 	if (game->tex_EA)
 		free_tex(game, game->tex_EA);
 	if (game->c_color)
-		free(game->c_color);//ou besoin d'une fonction ?
+		free(game->c_color);
 	if (game->f_color)
-		free(game->f_color);//ou besoin d'une fonction ?
+		free(game->f_color);
 	free(game);
 	exit(1);
 }
+
 /**
  * @brief Echec en initialisant la fenetre
  * Donc destroy le pointeur vers la mlx

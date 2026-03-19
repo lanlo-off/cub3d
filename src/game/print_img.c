@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:24:33 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/16 10:12:53 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:23:06 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	print_img(t_game *game, void *img, int i, int j)
 		game->tile_size * j, game->tile_size * i);
 }
 
-void put_pixel(t_img *img, int x, int y, int color)//full IA
+void	put_pixel(t_img *img, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;

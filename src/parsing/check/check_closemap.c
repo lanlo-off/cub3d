@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   check_closemap.c                                  :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: mmiotla <mmiotla@student.42.fr>           #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/03/09 11:57:39 by mmiotla          #+#    #+#              */
-/*   Updated: 2026/03/13 16:25:59 by mmiotla         ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   check_closemap.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/09 11:57:39 by mmiotla           #+#    #+#             */
+/*   Updated: 2026/03/19 15:12:51 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**copy_map(char **map, int height)
 	return (copy);
 }
 
-bool flood_fill(char * *map, int x, int y)
+bool	flood_fill(char **map, int x, int y)
 {
 	if (x < 0 || y < 0)
 		return (false);
@@ -74,7 +74,7 @@ int	find_zero(char **map, int *x, int *y)
 	return (0);
 }
 
-bool check_map_closed(t_map *map)
+bool	check_map_closed(t_map *map)
 {
 	char	**copy;
 	int		x;
@@ -85,8 +85,6 @@ bool check_map_closed(t_map *map)
 	p_x = map->p_pos[0];
 	p_y = map->p_pos[1];
 	copy = copy_map(map->grid, map->end - map->start);
-	// print_map(map->grid); //debug only
-	// print_map(copy); //debug only
 	if (flood_fill(copy, p_x, p_y) == false)
 		return (free_tab(copy), false);
 	while (find_zero(copy, &x, &y))
@@ -94,7 +92,6 @@ bool check_map_closed(t_map *map)
 		if (flood_fill(copy, x, y) == false)
 			return (free_tab(copy), false);
 	}
-	//print_map(copy);
 	free_tab(copy);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:42:58 by llechert          #+#    #+#             */
-/*   Updated: 2026/01/19 10:50:47 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:25:39 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	try_moving(t_player *p, t_map *m, double dx, double dy)
 {
-	double new_x;
-	double new_y;
-	
+	double	new_x;
+	double	new_y;
+
 	new_x = p->x + dx;
 	new_y = p->y + dy;
 	if (is_in_map(new_x, m->width) && m->grid[(int)p->y][(int)new_x] == '0')
@@ -25,6 +25,16 @@ static void	try_moving(t_player *p, t_map *m, double dx, double dy)
 		p->y = new_y;
 }
 
+/**
+ * @brief 1- gestion du mouvement vers l'avant ou arriere
+ * 2- gestion du strafe
+ * 3- Normalisation du deplacement pour eviter acceleration en strafing
+ * 4- On verifie s'il y a un mur et on bouge si c'est ok
+ * 
+ * @param g 
+ * @param key 
+ * @param p 
+ */
 static void	move_player(t_game *g, t_key *key, t_player *p)
 {
 	double	move_x;
@@ -33,20 +43,16 @@ static void	move_player(t_game *g, t_key *key, t_player *p)
 
 	move_x = 0.0;
 	move_y = 0.0;
-	/*1- gestion du mouvement vers l'avant ou arriere*/
 	move_x = p->dir_x * (key->w - key->s);
 	move_y = p->dir_y * (key->w - key->s);
-	/*2- gestion du strafe*/
 	move_x += p->plane_x * (key->d - key->a);
 	move_y += p->plane_y * (key->d - key->a);
-	/*3- Normalisation du deplacement pour eviter acceleration en strafing*/
 	len = sqrt(move_x * move_x + move_y * move_y);
 	if (len > 0)
 	{
 		move_x /= len;
 		move_y /= len;
 	}
-	/*4- On verifie s'il y a un mur et on bouge si c'est ok*/
 	try_moving(p, g->map, move_x * MOV_SPEED, move_y * MOV_SPEED);
 }
 
@@ -58,7 +64,6 @@ int	game_loop(t_game *game)
 		rotate(game->player, ROT_SPEED);
 	move_player(game, game->key, game->player);
 	render(game, game->mlx, game->img);
-	// print_minimap(game, game->mlx, game->img);
 	return (0);
 }
 
@@ -67,32 +72,31 @@ int	key_press(int keycode, t_game *game)
 	// if (keycode == KEY_ESC)
 	// 	exit_game(game);
 	// if (keycode == KEY_LEFT)
-	// 	game->key->left = true;//, printf("Rot gauche\n");//retirer les printf par la suite
+	// 	game->key->left = true;
 	// if (keycode == KEY_RIGHT)
-	// 	game->key->right = true;//, printf("Rot droite\n");
+	// 	game->key->right = true;
 	// if (keycode == KEY_W)
-	// 	game->key->w = true;//, printf("Avance\n");
+	// 	game->key->w = true;
 	// if (keycode == KEY_S)
-	// 	game->key->s = true;//, printf("Recule\n");
+	// 	game->key->s = true;
 	// if (keycode == KEY_A)
-	// 	game->key->a = true;//, printf("Strafe gauche\n");
+	// 	game->key->a = true;
 	// if (keycode == KEY_D)
-	// 	game->key->d = true;//, printf("Strafe droite\n");
-	// printf("[%i]\n", keycode);
+	// 	game->key->d = true;
 	if (keycode == 65307)
 		exit_game(game);
 	if (keycode == 65361)
-		game->key->left = true;//, printf("Rot gauche\n");//retirer les printf par la suite
+		game->key->left = true;
 	if (keycode == 65363)
-		game->key->right = true;//, printf("Rot droite\n");
+		game->key->right = true;
 	if (keycode == 119)
-		game->key->w = true;//, printf("Avance\n");
+		game->key->w = true;
 	if (keycode == 115)
-		game->key->s = true;//, printf("Recule\n");
+		game->key->s = true;
 	if (keycode == 97)
-		game->key->a = true;//, printf("Strafe gauche\n");
+		game->key->a = true;
 	if (keycode == 100)
-		game->key->d = true;//, printf("Strafe droite\n");
+		game->key->d = true;
 	return (0);
 }
 
@@ -124,4 +128,3 @@ int	key_release(int keycode, t_game *game)
 		game->key->d = false;
 	return (0);
 }
-

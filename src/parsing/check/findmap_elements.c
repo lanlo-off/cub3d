@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   findmap_elements.c                                :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: mmiotla <mmiotla@student.42.fr>           #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/02/25 14:50:12 by mmiotla          #+#    #+#              */
-/*   Updated: 2026/03/13 16:26:01 by mmiotla         ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   findmap_elements.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 14:50:12 by mmiotla           #+#    #+#             */
+/*   Updated: 2026/03/19 15:10:53 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,19 @@ static bool	find_color(t_game *g)
 	return (false);
 }
 
-bool findmap_elements(t_game *game)
+bool	findmap_elements(t_game *game)
 {
 	if (!fill_raw(game))
 		return (ft_error(game, ERR_MALLOC), false);
-	//printf(":::fillraw\n");
 	if (!find_tex(game))
 		return (ft_error(game, ERR_TEX_NUMBER), false);
-	//printf(":::findtex\n");
 	if (!find_color(game))
 		return (ft_error(game, ERR_COLOR_NUMBER), false);
-	//printf(":::findcolor\n");
 	if (!find_map(game))
 		return (ft_error(game, ERR_MAP_FIND), false);
-	//printf(":::findmap\n");
 	if (!fill_grid(game))
 		return (ft_error(game, ERR_MALLOC), false);
-	//printf(":::fillgrid\n");
 	if (!check_player_pos(game->map))
 		return (ft_error(game, ERR_PLAYER_NUMBER), false);
-	//printf(":::playerpos\n");
 	return (true);
 }

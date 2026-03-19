@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:32:24 by llechert          #+#    #+#             */
-/*   Updated: 2026/03/16 17:14:18 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 14:54:18 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ int		get_color_from_xpm(int x, int y, t_tex *tex);
 
 
 /*#############   MINIMAP   ###########*/
-void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
-bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
-void	mm_get_ray_values(t_ray *ray, t_player *player);
-bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
+// void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
+// bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
+// void	mm_get_ray_values(t_ray *ray, t_player *player);
+// bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
 
 /*#############   PARSING   ###########*/
 int		is_file_valid(const char *filename, t_extension expected);
@@ -149,12 +149,12 @@ void    print_error(t_err_code code);
 /*#############   TEMPORAIRE   ###########*/
 /*tmp_utils.c*/
 void	print_map(char **grid);
-void	get_map(t_map *map, const char *filename);
-int		count_line_len(const char *filename);
-int		count_lines(const char *filename);
+// void	get_map(t_map *map, const char *filename);
+// int		count_line_len(const char *filename);
+// int		count_lines(const char *filename);
 bool	load_textures(t_game *g);
-bool	set_floor_ceiling_color(t_game *g);
-void	set_color(t_color *color, char *name);
+// bool	set_floor_ceiling_color(t_game *g);
+// void	set_color(t_color *color, char *name);
 void    free_tab(char **tab);
 
 

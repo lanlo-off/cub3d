@@ -6,7 +6,7 @@
 /*   By: llechert <llechert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:27:25 by mmiotla           #+#    #+#             */
-/*   Updated: 2026/03/12 18:53:38 by llechert         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:18:20 by llechert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ int	count_raw(t_game *game, char *map_path)
 		line = get_next_line(fd);
 		while (line)
 		{
-			(line_count++, free(line));
+			line_count++;
+			free(line);
 			line = get_next_line(fd);
 		}
 		close(fd);
 	}
-	printf("line count-> %d\n", line_count);
 	return (line_count);
 }
 
-bool fill_raw(t_game *g)
+bool	fill_raw(t_game *g)
 {
-	int     i;
-	int     fd;
-	char    *line;
+	int		i;
+	int		fd;
+	char	*line;
 
 	i = 0;
 	fd = open(g->map_path, O_RDONLY);
@@ -55,12 +55,11 @@ bool fill_raw(t_game *g)
 		if (!line)
 		{
 			get_next_line(-42);
-			break;
+			break ;
 		}
 		g->map->raw[i++] = line;
 	}
 	(get_next_line(-42), close(fd));
-	printf("Last pointer to NULL is -> %d\n", i);
 	g->map->raw[i] = NULL;
 	return (true);
 }
