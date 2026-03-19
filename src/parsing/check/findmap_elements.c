@@ -102,6 +102,8 @@ bool	findmap_elements(t_game *game)
 {
 	if (!fill_raw(game))
 		return (ft_error(game, ERR_MALLOC), false);
+	if (!no_invalid_char_found(game))
+		return (ft_error(game, ERR_MAP_CHARS), false);
 	if (!find_tex(game))
 		return (ft_error(game, ERR_TEX_NUMBER), false);
 	if (!find_color(game))

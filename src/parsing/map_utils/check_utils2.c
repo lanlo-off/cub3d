@@ -58,3 +58,31 @@ bool	is_numeric_string(char *str)
 	}
 	return (true);
 }
+
+bool no_invalid_char_found(t_game *g)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (g->map->raw[i])
+	{
+		while (g->map->raw[i] && empty_line(g->map->raw[i]))
+			i++;
+		if (!g->map->raw[i])
+			break ;
+		line = skip_spaces(g->map->raw[i++]);
+		if (ft_strncmp(line, "NO ", 3) != 0 || ft_strncmp(line, "SO ", 3)\
+			!= 0 || ft_strncmp(line, "WE ", 3) != 0 || ft_strncmp(line, \
+			"EA ", 3) != 0 || ft_strncmp(line, "F ", 2) != 0 || \
+			ft_strncmp(line, "C ", 2) != 0)
+		{
+			i++;
+			continue ;
+		}
+		if (!valid_line(" 01NSEW\n", g->map->raw[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}

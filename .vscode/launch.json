@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/cub3d",
-      "args": ["${workspaceFolder}/max.cub"],
+      "args": ["${workspaceFolder}/maps/valides/max.cub"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

@@ -52,7 +52,7 @@
 # define MSG_ERR_MALLOC "Memory allocation failed\n"
 # define MSG_ERR_MAP_EMPTY "Map is empty or totally invalid\n"
 # define MSG_ERR_MAP_UNCLOSED "Map is not fully enclosed by walls\n"
-# define MSG_ERR_MAP_CHARS "Invalid characters found in map\n"
+# define MSG_ERR_MAP_CHARS "Invalid characters found in the file\n"
 # define MSG_ERR_MAP_FIND "Could not find map in the file\n"
 # define MSG_ERR_MAP_LAST "The map is not last\n"
 # define MSG_ERR_TEX_NUMBER "Number of textures invalid must equal to 1\n"
@@ -141,6 +141,7 @@ int     count_tab(char **tab);
 int     check_rgb_value(char *rgb);
 bool    is_numeric_string(char *str);
 bool	find_map(t_game *g);
+bool	no_invalid_char_found(t_game *g);
 
 /*#############   ERRORS SYSTEM   ###########*/
 void    ft_error(t_game *game, t_err_code code);
