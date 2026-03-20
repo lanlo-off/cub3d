@@ -51,11 +51,11 @@ void	load_tex(t_mlx *mlx, t_tex *tex, char *path)
  */
 bool	load_textures(t_game *g)
 {
-	if (!g->mlx || !g->tex_NO || !g->tex_SO || !g->tex_WE || !g->tex_EA)
+	if (!g->mlx || !g->tex_no || !g->tex_so || !g->tex_we || !g->tex_ea)
 		return (false);
-	load_tex(g->mlx, g->tex_NO, g->tex_NO->path);
-	load_tex(g->mlx, g->tex_SO, g->tex_SO->path);
-	load_tex(g->mlx, g->tex_WE, g->tex_WE->path);
-	load_tex(g->mlx, g->tex_EA, g->tex_EA->path);
+	load_tex(g->mlx, g->tex_no, g->tex_no->path);
+	load_tex(g->mlx, g->tex_so, g->tex_so->path);
+	load_tex(g->mlx, g->tex_we, g->tex_we->path);
+	load_tex(g->mlx, g->tex_ea, g->tex_ea->path);
 	return (true);
 }

@@ -14,26 +14,26 @@
 
 bool	init_textures(t_game *g)
 {
-	g->tex_NO = ft_calloc(1, sizeof(t_tex));
-	if (!g->tex_NO)
+	g->tex_no = ft_calloc(1, sizeof(t_tex));
+	if (!g->tex_no)
 		return (false);
-	g->tex_SO = ft_calloc(1, sizeof(t_tex));
-	if (!g->tex_SO)
-		return (free(g->tex_NO), false);
-	g->tex_WE = ft_calloc(1, sizeof(t_tex));
-	if (!g->tex_WE)
-		return (free(g->tex_NO), free(g->tex_SO), false);
-	g->tex_EA = ft_calloc(1, sizeof(t_tex));
-	if (!g->tex_EA)
-		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), false);
+	g->tex_so = ft_calloc(1, sizeof(t_tex));
+	if (!g->tex_so)
+		return (free(g->tex_no), false);
+	g->tex_we = ft_calloc(1, sizeof(t_tex));
+	if (!g->tex_we)
+		return (free(g->tex_no), free(g->tex_so), false);
+	g->tex_ea = ft_calloc(1, sizeof(t_tex));
+	if (!g->tex_ea)
+		return (free(g->tex_no), free(g->tex_so), free(g->tex_we), false);
 	g->f_color = ft_calloc(1, sizeof(t_color));
 	if (!g->f_color)
-		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), \
-			free(g->tex_EA), false);
+		return (free(g->tex_no), free(g->tex_so), free(g->tex_we), \
+			free(g->tex_ea), false);
 	g->c_color = ft_calloc(1, sizeof(t_color));
 	if (!g->c_color)
-		return (free(g->tex_NO), free(g->tex_SO), free(g->tex_WE), \
-			free(g->tex_EA), free(g->f_color), false);
+		return (free(g->tex_no), free(g->tex_so), free(g->tex_we), \
+			free(g->tex_ea), free(g->f_color), false);
 	return (true);
 }
 

@@ -34,13 +34,13 @@ static bool	check_color(t_game *game, t_color *color)
 
 static bool	check_path(t_game *game)
 {
-	if (!valid_path(game->tex_EA->path))
+	if (!valid_path(game->tex_ea->path))
 		return (false);
-	if (!valid_path(game->tex_NO->path))
+	if (!valid_path(game->tex_no->path))
 		return (false);
-	if (!valid_path(game->tex_SO->path))
+	if (!valid_path(game->tex_so->path))
 		return (false);
-	if (!valid_path(game->tex_WE->path))
+	if (!valid_path(game->tex_we->path))
 		return (false);
 	return (true);
 }

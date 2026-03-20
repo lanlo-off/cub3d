@@ -59,7 +59,7 @@ bool	is_numeric_string(char *str)
 	return (true);
 }
 
-static bool	is_identifier_line(char *line)
+bool	is_identifier_line(char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		return (true);
@@ -74,26 +74,4 @@ static bool	is_identifier_line(char *line)
 	if (ft_strncmp(line, "C ", 2) == 0)
 		return (true);
 	return (false);
-}
-
-bool	no_invalid_char_found(t_game *g)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (g->map->raw[i])
-	{
-		if (empty_line(g->map->raw[i]))
-		{
-			i++;
-			continue ;
-		}
-		line = skip_spaces(g->map->raw[i]);
-		if (!is_identifier_line(line)
-			&& !valid_line(" \t01NSEW\n", g->map->raw[i]))
-			return (false);
-		i++;
-	}
-	return (true);
 }

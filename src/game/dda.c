@@ -64,17 +64,17 @@ bool	calculate_hitpoint(t_game *g, t_ray *ray, t_map *map, t_player *player)
 	if (ray->frontier_type == VERTICAL)
 	{
 		if (ray->step_x == 1)
-			ray->wall_texture = g->tex_WE;
+			ray->wall_texture = g->tex_we;
 		else
-			ray->wall_texture = g->tex_EA;
+			ray->wall_texture = g->tex_ea;
 		ray->perp_dist = ray->side_dist_x - ray->delta_dist_x;
 	}
 	else
 	{
 		if (ray->step_y == 1)
-			ray->wall_texture = g->tex_NO;
+			ray->wall_texture = g->tex_no;
 		else
-			ray->wall_texture = g->tex_SO;
+			ray->wall_texture = g->tex_so;
 		ray->perp_dist = ray->side_dist_y - ray->delta_dist_y;
 	}
 	if (ray->perp_dist < EPSILON)

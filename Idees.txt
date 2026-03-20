@@ -3,7 +3,7 @@ Parser
 - Remplit :
 	- game->map (en remplacant les cases vides par des a (cf ex en fin de doc))
 		- Si la map n'est pas convexe, remplace les vides par des a (permettra de traiter un rectangle dans la suite du sujet plutot que de traiter une forme concave tout en sachant que ce sont des espaces vides)
-	- game->tex_NO/SO/WE/EA --> Recuperer la fonction load textures && load tex dans tmp_utils.c
+	- game->tex_no/SO/WE/EA --> Recuperer la fonction load textures && load tex dans tmp_utils.c
 	- game->floor_color --> remplir la struct en rgb
 	- game->ceiling_color --> remplir la struct en rgb
 

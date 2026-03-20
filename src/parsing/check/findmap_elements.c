@@ -16,21 +16,21 @@ static bool	find_tex2(t_game *g, char *line)
 {
 	if (ft_strncmp(line, "SO ", 3) == 0)
 	{
-		if (g->tex_SO->flag < 1)
-			g->tex_SO->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
-		g->tex_SO->flag++;
+		if (g->tex_so->flag < 1)
+			g->tex_so->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
+		g->tex_so->flag++;
 	}
 	if (ft_strncmp(line, "WE ", 3) == 0)
 	{
-		if (g->tex_WE->flag < 1)
-			g->tex_WE->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
-		g->tex_WE->flag++;
+		if (g->tex_we->flag < 1)
+			g->tex_we->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
+		g->tex_we->flag++;
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
-		if (g->tex_EA->flag < 1)
-			g->tex_EA->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
-		g->tex_EA->flag++;
+		if (g->tex_ea->flag < 1)
+			g->tex_ea->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
+		g->tex_ea->flag++;
 	}
 	return (true);
 }
@@ -47,15 +47,15 @@ static bool	find_tex(t_game *g)
 		i++;
 		if (ft_strncmp(line, "NO ", 3) == 0)
 		{
-			if (g->tex_NO->flag < 1)
-				g->tex_NO->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
-			g->tex_NO->flag++;
+			if (g->tex_no->flag < 1)
+				g->tex_no->path = ft_strtrim(skip_spaces(line + 3), " \t\n");
+			g->tex_no->flag++;
 		}
 		else if (!find_tex2(g, line))
 			return (false);
 	}
-	if (g->tex_NO->flag == 1 && g->tex_SO->flag == 1 && \
-			g->tex_WE->flag == 1 && g->tex_EA->flag == 1)
+	if (g->tex_no->flag == 1 && g->tex_so->flag == 1 && \
+			g->tex_we->flag == 1 && g->tex_ea->flag == 1)
 		return (true);
 	return (false);
 }

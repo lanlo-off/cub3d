@@ -15,24 +15,21 @@
 
 /*#############   PERMANENT   ###########*/
 
-# include "struct.h"
-# include "keycode.h"
-# include <math.h>
-# include <stdlib.h>
+# include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include "keycode.h"
+# include "struct.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include "../libft/libft.h"
-
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 
-#include <fcntl.h>
-
-#ifndef O_DIRECTORY
-# define O_DIRECTORY 0
-#endif
+# ifndef O_DIRECTORY
+#  define O_DIRECTORY 0
+# endif
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 450
@@ -42,9 +39,10 @@
 # define MM_WIDTH
 # define MM_HEIGTH
 # define MM_NB_RAY 120
-# define ROT_SPEED 0.01//en faisant WIN_WINDTH / 100000 on a un truc correct
-# define MOV_SPEED 0.01//a voir
-# define EPSILON 1e-5//Protection pour le ray_casting pour eviter de diviser par des nombres trop petits et crash
+# define ROT_SPEED 0.01
+# define MOV_SPEED 0.01
+# define EPSILON 1e-5
+
 # define M_PI 3.14159265358979323846
 # define MSG_ERR_ARG "Invalid number of arguments\n"
 # define MSG_ERR_FILE_EXT "Wrong file extension (must be .cub)\n"
@@ -68,7 +66,7 @@ void	free_tex(t_game *g, t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 void	free_img(t_game *game, t_img *img);
 int		exit_game(t_game *game);
-void    free_game(t_game *game);
+void	free_game(t_game *game);
 
 /*#############   INIT   ###########*/
 
@@ -114,49 +112,37 @@ void	render(t_game *game, t_mlx *mlx, t_img *img);
 int		rgb_to_int(t_color *color);
 int		get_color_from_xpm(int x, int y, t_tex *tex);
 
-
-/*#############   MINIMAP   ###########*/
-// void	print_minimap(t_game *game, t_mlx *mlx, t_img *img);
-// bool	mm_print_ray_img(t_game *game, t_map *map, t_player *player, int nb_ray);
-// void	mm_get_ray_values(t_ray *ray, t_player *player);
-// bool	mm_calculate_hitpoint(t_ray *ray, t_map *map, t_player *player);
-
 /*#############   PARSING   ###########*/
 int		is_file_valid(const char *filename, t_extension expected);
 bool	valid_path(char *arg);
 char	*skip_identifier(t_game *game, char *line);
-bool    findmap_elements(t_game *game);
-bool    check_texture(t_game *game);
-char    *skip_spaces(char *line);
-bool    empty_line(char *str);
-int	    count_raw(t_game *game, char *map_path);
-int     valid_line(char *tofind, char *line);
-bool    fill_raw(t_game *game);
-bool    fill_grid(t_game *game);
-bool    is_last(t_game *game);
-bool    check_player_pos(t_map *map);
-bool    check_map_closed(t_map *map);
-bool    parser(t_game *game);
-int     count_tab(char **tab);
-int     check_rgb_value(char *rgb);
-bool    is_numeric_string(char *str);
+bool	findmap_elements(t_game *game);
+bool	check_texture(t_game *game);
+char	*skip_spaces(char *line);
+bool	empty_line(char *str);
+int		count_raw(t_game *game, char *map_path);
+int		valid_line(char *tofind, char *line);
+bool	fill_raw(t_game *game);
+bool	fill_grid(t_game *game);
+bool	is_last(t_game *game);
+bool	check_player_pos(t_map *map);
+bool	check_map_closed(t_map *map);
+bool	parser(t_game *game);
+int		count_tab(char **tab);
+int		check_rgb_value(char *rgb);
+bool	is_numeric_string(char *str);
 bool	find_map(t_game *g);
 bool	no_invalid_char_found(t_game *g);
+bool	is_identifier_line(char *line);
 
 /*#############   ERRORS SYSTEM   ###########*/
-void    ft_error(t_game *game, t_err_code code);
-void    print_error(t_err_code code);
+void	ft_error(t_game *game, t_err_code code);
+void	print_error(t_err_code code);
 
 /*#############   TEMPORAIRE   ###########*/
 /*tmp_utils.c*/
 void	print_map(char **grid);
-// void	get_map(t_map *map, const char *filename);
-// int		count_line_len(const char *filename);
-// int		count_lines(const char *filename);
 bool	load_textures(t_game *g);
-// bool	set_floor_ceiling_color(t_game *g);
-// void	set_color(t_color *color, char *name);
-void    free_tab(char **tab);
-
+void	free_tab(char **tab);
 
 #endif

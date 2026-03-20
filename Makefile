@@ -39,13 +39,13 @@ HEADER = includes/cub3d.h\
 
 LIBFT = libft/libft.a
 
-MLX_FLAGS = -L/usr/lib/X11 -lXext -lX11 #-L/opt/X11/lib
+MLX_FLAGS = -L/usr/lib/X11 -lXext -lX11
 
 MLX = mlx/libmlx.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 #-I/opt/X11/include
+CFLAGS = -Wall -Wextra -Werror -g3
 
 all: $(NAME)
 

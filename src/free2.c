@@ -37,14 +37,14 @@ void	free_game2(t_game *game)
 		free_map(game->map);
 	if (game->player)
 		free(game->player);
-	if (game->tex_NO)
-		free_tex(game, game->tex_NO);
-	if (game->tex_SO)
-		free_tex(game, game->tex_SO);
-	if (game->tex_WE)
-		free_tex(game, game->tex_WE);
-	if (game->tex_EA)
-		free_tex(game, game->tex_EA);
+	if (game->tex_no)
+		free_tex(game, game->tex_no);
+	if (game->tex_so)
+		free_tex(game, game->tex_so);
+	if (game->tex_we)
+		free_tex(game, game->tex_we);
+	if (game->tex_ea)
+		free_tex(game, game->tex_ea);
 	if (game->mlx)
 		free_mlx(game->mlx);
 	if (game->key)
